@@ -2,54 +2,52 @@
 
 
 
-# [Project Name] 🎯
+# Onn Nokkatte 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: Serenis
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Sabari Raj P R - College Of Engineering Attingal
+- Member 2: B S Haripriya - College Of Engineering Attingal
 
 ### Project Description
-[2-3 lines about what your project does]
+Onn Nokkatte ("Let me just check" in Malayalam) is a cozy Kerala-themed indie web game that gamifies the universal late-night urge to stare into an open refrigerator. It transforms mindless midnight fridge-checking into a fast-paced memory puzzle where shelves mysteriously shuffle behind closed doors, alongside an interactive Kerala art studio, pantry puzzles, and a cat waiting for treats.
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+Millions of humans suffer daily from Chronic Refrigerator Glancing Syndrome (CRGS): opening the fridge door 47 times an hour with zero intention of cooking, genuinely believing a biryani or cold soda will spontaneously generate out of thin air if they just open it with enough conviction. Modern refrigerators cruelly refuse to reward this dedicated staring with anything other than cold air, high electricity bills, and existential dread.
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+We turned this aimless staring into a competitive sport. In Onn Nokkatte, opening the fridge actually does change the contents—forcing you to memorize shelves in 7 seconds, spot sneaky midnight ingredient swaps before time runs out, paint backwater houseboats on a wall easel to cope with hunger, and feed crispy fried fish to a judging kitchen cat who watched you do the whole thing.
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
 
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+Languages used: HTML5, CSS3, JavaScript (Vanilla ES6+)
+Frameworks used: None (Proudly 100% vanilla and lightweight for instant, dependency-free load times)
+Libraries used: Web Audio API (Built-in procedural audio engine synthesizing fridge suction pops, magnetic latch clicks, painterly brush strokes, cat purrs, and chimes in real-time with zero external MP3s or audio assets)
+Tools used: Visual Studio Code, Git, Google Chrome DevTools, SVG vector drafting tools
 
 ### Implementation
 For Software:
 # Installation
-[commands]
+git clone https://github.com/Haripriyabs1/onn_nokkatte.git
+cd onn_nokkatte
 
 # Run
-[commands]
+# Open directly in your browser:
+start index.html
+# Or run with a local server:
+npx serve .
 
 ### Project Documentation
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![Screenshot1]()
 
 ![Screenshot2](Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*

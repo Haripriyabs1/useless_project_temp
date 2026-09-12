@@ -47,30 +47,34 @@ npx serve .
 For Software:
 
 # Screenshots (Add at least 3)
-!
+<img width="1900" height="863" alt="image" src="https://github.com/user-attachments/assets/cc1f1840-a395-4f7a-9efe-a84a8a68014d" />
+Home Page
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+<img width="1918" height="865" alt="image" src="https://github.com/user-attachments/assets/fecb735e-2c53-487b-b891-56328ea9586a" />
+Spot The Difference
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+<img width="1918" height="861" alt="image" src="https://github.com/user-attachments/assets/3900b5c6-90b8-41dc-b954-d93659982342" />
+Easel Studio
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
+1. User Interface Layer: The entry point where players interact with the game portal, selecting between the main Spot The Difference memory challenge, the Kerala Art Easel studio, the pantry sorting game, or classic staring mode.
+2. Central Game Loop Engine: A state machine that drives the core gameplay loop across 3 timed phases:
+Phase 1: Memorize (7s) — The fridge door opens, allowing players to study shelf items.
+Phase 2: Shuffling (3s) — The door shuts while random items mutate behind closed doors.
+Phase 3: Spot Difference (15s) — The door reopens, enabling interactive hitbox detection for players to identify what changed before time runs out.
+3. Web Audio API Procedural Synthesizer: Generates dynamic audio effects (suction pops, magnetic latch clicks, brushstrokes, and chimes) on-the-fly using oscillators and noise buffers without any external audio files.
+4. State Persistence (localStorage): Tracks and preserves lifetime fridge opens, high scores, best streaks, and unlocked achievements locally in the player's browser.
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
-
-# Additional Demos
-[Add any extra demo materials/links]
+[[Google Drive Link]](https://drive.google.com/file/d/1L13Ih5mzXKHUenAfMQPIbiuiWTwGNSJk/view?usp=sharing)
+ A walkthrough of Onn Nokkatte showcasing the complete gameplay loop: launching from the cozy Kerala game portal, memorizing fridge shelves before the door swings shut, spotting sneaky ingredient swaps under the 15-second timer, and earning score streaks. The video also highlights the interactive Kerala Art Easel studio, pantry organization puzzle, synthesized Web Audio sound effects, and playful easter eggs like feeding the kitchen cat and swatting the yarn ball.
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Sabari Raj P R: Focused on game mechanics architecture, procedural audio synthesis with the Web Audio API, state management (`localStorage`), and performance optimization.
+- B S Haripriya: Focused on Kerala-themed visual storytelling, frontend layout structuring & CSS 3D animations, the on-wall painting/easel studio, and interactive micro-interactions.
+
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 

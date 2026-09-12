@@ -57,7 +57,7 @@ Spot The Difference
 Easel Studio
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
+
 1. User Interface Layer: The entry point where players interact with the game portal, selecting between the main Spot The Difference memory challenge, the Kerala Art Easel studio, the pantry sorting game, or classic staring mode.
 2. Central Game Loop Engine: A state machine that drives the core gameplay loop across 3 timed phases:
 Phase 1: Memorize (7s) — The fridge door opens, allowing players to study shelf items.

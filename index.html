@@ -1,1 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>THE FRIDGE — There’s Nothing New</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     LANDING SCREEN
+========================================================= -->
+
+<section id="landing-screen" class="screen landing-screen active">
+
+    <div class="landing-wall"></div>
+    <div class="ambient-glow"></div>
+
+    <!-- Ambient floating kitchen dust motes/fireflies -->
+    <div class="landing-particles" aria-hidden="true">
+        <span class="particle p1"></span>
+        <span class="particle p2"></span>
+        <span class="particle p3"></span>
+        <span class="particle p4"></span>
+        <span class="particle p5"></span>
+    </div>
+
+    <div class="landing-content">
+
+        <!-- Header Hero Badge -->
+        <div class="landing-header">
+            <div class="folder-tag">
+                <span class="tag-pulse"></span> 📁 onn_nokkatte • KERALA KITCHEN STUDIOS
+            </div>
+
+            <h1 class="landing-title">
+                THE FRIDGE
+                <span class="title-edition">DELUXE</span>
+            </h1>
+
+            <p class="tagline">
+                “There’s probably nothing new inside... or is there?”
+            </p>
+
+            <p class="sub-tagline">
+                A cozy Kerala kitchen game of memory, art, and the endless pursuit of late-night snacks.
+            </p>
+        </div>
+
+        <!-- Mascot Mini Hero Showcase -->
+        <div class="mascot-hero-card" title="Cozy kitchen friends">
+            <div class="mascot-cat-peek">🐈</div>
+            <div class="mascot-tea-steam">
+                <span class="steam s1">~</span>
+                <span class="steam s2">~</span>
+                <span class="tea-cup">☕</span>
+            </div>
+            <div class="mascot-text">
+                <strong>Cat says:</strong> "I watched the whole fridge change. Can you spot it?"
+            </div>
+        </div>
+
+        <!-- Structured Game Mode Cards Grid -->
+        <div class="mode-cards-grid">
+
+            <!-- Card 1: Main Spot the Difference -->
+            <div class="mode-card card-featured">
+                <div class="mode-card-header">
+                    <span class="mode-badge badge-gold">⭐ MAIN GAME</span>
+                    <span class="mode-time">7s Memory</span>
+                </div>
+                <div class="mode-card-icon">🔍🚪</div>
+                <h3>Spot The Difference</h3>
+                <p>Study the shelves carefully, watch the door swing shut, and tap what changed!</p>
+                <button id="start-game-btn" class="primary-btn game-btn card-action-btn">
+                    🎮 PLAY SPOT DIFFERENCE
+                </button>
+            </div>
+
+            <!-- Card 2: Kerala Painting Game -->
+            <div class="mode-card card-art">
+                <div class="mode-card-header">
+                    <span class="mode-badge badge-rose">🎨 NEW STUDIO</span>
+                    <span class="mode-time">Creative</span>
+                </div>
+                <div class="mode-card-icon">🎨🌴</div>
+                <h3>Kerala Art Studio</h3>
+                <p>Restore backwaters, pooram elephants & stamp your own custom art easel!</p>
+                <button id="painting-game-btn" class="secondary-btn painting-nav-btn card-action-btn">
+                    🎨 OPEN ART STUDIO
+                </button>
+            </div>
+
+            <!-- Card 3: Pantry Shelf Game -->
+            <div class="mode-card card-shelf">
+                <div class="mode-card-header">
+                    <span class="mode-badge badge-amber">🫖 COZY PUZZLE</span>
+                    <span class="mode-time">Organize</span>
+                </div>
+                <div class="mode-card-icon">🫙🍞</div>
+                <h3>Pantry Shelf Game</h3>
+                <p>Arrange Kerala spices, milk, pickles & bread onto the teak wood shelves.</p>
+                <button id="shelf-games-btn" class="secondary-btn card-action-btn">
+                    🫖 ORGANIZE PANTRY
+                </button>
+            </div>
+
+            <!-- Card 4: Classic Fridge Stare -->
+            <div class="mode-card card-classic">
+                <div class="mode-card-header">
+                    <span class="mode-badge badge-slate">👀 ZEN MODE</span>
+                    <span class="mode-time">Endless</span>
+                </div>
+                <div class="mode-card-icon">🥛🐱</div>
+                <h3>Classic Staring</h3>
+                <p>The original existential simulator. Open and close the fridge forever.</p>
+                <button id="enter-btn" class="secondary-btn card-action-btn">
+                    👀 START STARING
+                </button>
+            </div>
+
+        </div>
+
+        <!-- How To Play Strip -->
+        <div class="how-to-box">
+            <span class="how-to-label">HOW TO PLAY:</span>
+            <div class="step-pill">1. 👀 Memorize (7s)</div>
+            <div class="step-arrow">➔</div>
+            <div class="step-pill">2. 🚪 Door Shuffles (3s)</div>
+            <div class="step-arrow">➔</div>
+            <div class="step-pill">3. 🔍 Tap Difference!</div>
+            <span class="keyboard-tip">⌨️ Spacebar opens/closes</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MAIN FRIDGE EXPERIENCE
+========================================================= -->
+
+<section id="main-screen" class="screen main-screen">
+
+    <!-- Warm kitchen background -->
+
+    <div class="kitchen-background">
+
+        <div class="window">
+
+            <div class="window-frame"></div>
+
+            <div class="window-light"></div>
+
+            <div class="outside-plants">
+                🌿
+            </div>
+
+        </div>
+
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
+
+        <div class="wall-picture" id="wall-picture" aria-label="Kerala Painting Game">
+            <div class="picture-lamp" title="Art spotlight"></div>
+            
+            <div class="painting-game-container">
+                <div class="painting-game-header">
+                    <div class="painting-title-wrap">
+                        <span class="painting-title">🎨 KERALA CANVAS</span>
+                        <span id="painting-scene-name" class="painting-scene-name">Sunset Backwaters</span>
+                    </div>
+                    <div class="painting-header-actions">
+                        <button id="painting-scene-next-btn" class="painting-tool-btn" type="button" title="Switch to next painting">
+                            🔄 Next
+                        </button>
+                        <button id="painting-easel-open-btn" class="painting-tool-btn highlight" type="button" title="Open full-size easel studio">
+                            🔍 Easel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Canvas frame area with active SVG artwork -->
+                <div class="painting-canvas-frame" id="painting-canvas-frame">
+                    <div id="painting-canvas-art" class="painting-canvas-art">
+                        <!-- Initial SVG will be rendered/hydrated by JS -->
+                    </div>
+                    <!-- Stamp layer for cute decorative stamps -->
+                    <div id="painting-stamp-layer" class="painting-stamp-layer"></div>
+                    <!-- Completion banner overlay -->
+                    <div id="painting-complete-banner" class="painting-complete-banner hidden">
+                        <div class="complete-stars">⭐⭐⭐</div>
+                        <span>MASTERPIECE RESTORED!</span>
+                        <small>+200 Art Score • Tap Next</small>
+                    </div>
+                </div>
+
+                <!-- Painting Modes & Tools -->
+                <div class="painting-tools-bar">
+                    <div class="painting-mode-tabs">
+                        <button id="paint-mode-color" class="paint-tab-btn active" type="button" title="Color & Restore by Number">
+                            🖌️ Color
+                        </button>
+                        <button id="paint-mode-stamp" class="paint-tab-btn" type="button" title="Stamp Kerala icons">
+                            🐾 Stamp
+                        </button>
+                    </div>
+
+                    <div class="painting-subtools">
+                        <button id="painting-undo-btn" class="paint-action-btn" type="button" title="Undo last action">↩️</button>
+                        <button id="painting-reset-btn" class="paint-action-btn" type="button" title="Reset painting">🧹</button>
+                    </div>
+                </div>
+
+                <!-- Paint Palette (in Color mode) -->
+                <div id="painting-palette" class="painting-palette">
+                    <button class="palette-pot active" data-color="#f43f5e" data-color-id="1" style="--pot-color: #f43f5e" type="button" title="Sunset Crimson (1)"></button>
+                    <button class="palette-pot" data-color="#fbbf24" data-color-id="2" style="--pot-color: #fbbf24" type="button" title="Solar Gold (2)"></button>
+                    <button class="palette-pot" data-color="#10b981" data-color-id="3" style="--pot-color: #10b981" type="button" title="Coconut Emerald (3)"></button>
+                    <button class="palette-pot" data-color="#0ea5e9" data-color-id="4" style="--pot-color: #0ea5e9" type="button" title="Lagoon Blue (4)"></button>
+                    <button class="palette-pot" data-color="#854d0e" data-color-id="5" style="--pot-color: #854d0e" type="button" title="Teak Amber (5)"></button>
+                </div>
+
+                <!-- Stamp Toolbar (in Stamp mode) -->
+                <div id="painting-stamp-bar" class="painting-stamp-bar hidden">
+                    <button class="stamp-btn active" data-stamp="🌴" type="button" title="Coconut Palm">🌴</button>
+                    <button class="stamp-btn" data-stamp="⛵" type="button" title="Houseboat">⛵</button>
+                    <button class="stamp-btn" data-stamp="🐘" type="button" title="Elephant">🐘</button>
+                    <button class="stamp-btn" data-stamp="☀️" type="button" title="Warm Sun">☀️</button>
+                    <button class="stamp-btn" data-stamp="🥥" type="button" title="Tender Coconut">🥥</button>
+                    <button class="stamp-btn" data-stamp="🐾" type="button" title="Cat Paw">🐾</button>
+                    <button class="stamp-btn" data-stamp="🌺" type="button" title="Hibiscus">🌺</button>
+                </div>
+
+                <!-- Feedback / Status row -->
+                <div class="painting-status-row">
+                    <span id="painting-status-msg" class="painting-status-msg">Pick color & tap matching region</span>
+                    <div class="painting-progress-wrap" title="Painting Progress">
+                        <div id="painting-progress-bar" class="painting-progress-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wooden-shelf">
+
+            <div class="shelf-board"></div>
+
+            <div class="pantry-game" aria-label="Arrange the pantry game">
+                <div class="pantry-heading">
+                    <span>ARRANGE THE PANTRY</span>
+                    <small>Put each food in its labeled spot</small>
+                </div>
+
+                <div class="pantry-slots">
+                    <button class="pantry-slot" data-slot="top-left" type="button">BREAD</button>
+                    <button class="pantry-slot" data-slot="top-right" type="button">MILK</button>
+                    <button class="pantry-slot" data-slot="middle" type="button">VEGGIES</button>
+                    <button class="pantry-slot" data-slot="bottom" type="button">PICKLES</button>
+                </div>
+
+                <div class="pantry-items">
+                    <button class="pantry-item" data-item="bread" draggable="true" type="button">🍞</button>
+                    <button class="pantry-item" data-item="veggies" draggable="true" type="button">🥕</button>
+                    <button class="pantry-item" data-item="pickle" draggable="true" type="button">🫙</button>
+                    <button class="pantry-item" data-item="milk" draggable="true" type="button">🥛</button>
+                </div>
+
+                <button id="pantry-result" class="pantry-result" type="button">SELECT AN ITEM</button>
+                <button id="pantry-next" class="pantry-next hidden" type="button">TRY NEXT SHELF</button>
+            </div>
+
+        </div>
+
+        <div class="kitchen-table"></div>
+
+        <div class="chair chair-one"></div>
+        <div class="chair chair-two"></div>
+
+        <div class="kitchen-wainscot"></div>
+        <div class="kitchen-ambient-vignette"></div>
+
+        <div class="floor"></div>
+
+        <div class="sunbeam beam-one"></div>
+        <div class="sunbeam beam-two"></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TOP BAR & GAME HUD (Glassmorphic Elevated Header)
+    ====================================================== -->
+
+    <header class="top-bar">
+
+        <div class="top-bar-left">
+            <div class="brand-container">
+                <span class="live-status-dot" title="Session Active"></span>
+                <div class="brand">
+                    onn_nokkatte
+                </div>
+                <span id="brand-badge" class="brand-badge">Spot The Difference</span>
+            </div>
+        </div>
+
+        <div class="top-bar-center">
+            <!-- Classic Session Info (Shown in Classic Mode) -->
+            <div id="classic-hud" class="session-info hidden">
+                <span class="classic-counter-label">Session Opens:</span>
+                <span id="open-counter" class="classic-counter-value">0</span>
+            </div>
+
+            <!-- Game HUD (Shown in Game Mode) -->
+            <div id="game-hud" class="game-hud">
+
+                <div class="hud-item hud-round">
+                    <span class="hud-label">ROUND</span>
+                    <strong id="hud-round-val">1</strong>
+                </div>
+
+                <div class="hud-divider"></div>
+
+                <div class="hud-item hud-score">
+                    <span class="hud-label">SCORE</span>
+                    <div class="hud-val-wrap">
+                        <span class="hud-coin-icon">🪙</span>
+                        <strong id="hud-score-val">0</strong>
+                    </div>
+                </div>
+
+                <div class="hud-divider"></div>
+
+                <div class="hud-item hud-streak">
+                    <span class="hud-label">STREAK</span>
+                    <strong id="hud-streak-val">0x 🔥</strong>
+                </div>
+
+                <div class="hud-divider"></div>
+
+                <div class="hud-item hud-lives-wrap">
+                    <span class="hud-label">LIVES</span>
+                    <div class="hud-lives" id="hud-lives" title="Lives Remaining">
+                        ❤️❤️❤️
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Top Actions Dock -->
+        <div class="top-actions">
+
+            <button
+                id="hint-btn"
+                class="hud-btn hint-btn"
+                title="Get a hint (Highlights the shelf / item)">
+                💡 <span id="hint-text">Hint (2)</span>
+            </button>
+
+            <button
+                id="sound-btn"
+                class="hud-btn sound-btn"
+                title="Toggle Sound Effects">
+                🔊
+            </button>
+
+            <button
+                id="mode-toggle-btn"
+                class="hud-btn mode-btn"
+                title="Toggle between Game Mode and Classic Stare Mode">
+                🎮 Game
+            </button>
+
+            <button
+                id="painting-game-top-btn"
+                class="hud-btn painting-game-top-btn"
+                title="Jump to the painting game">
+                🎨 Art
+            </button>
+
+            <button
+                id="shelf-games-top-btn"
+                class="hud-btn shelf-games-top-btn"
+                title="Jump to the shelf games">
+                🫖 Shelf
+            </button>
+
+            <button
+                id="stats-btn"
+                class="hud-btn stats-btn"
+                title="Fridge Activity & Stats">
+                📊
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PHASE BANNER & COUNTDOWN
+    ====================================================== -->
+
+    <div id="phase-banner" class="phase-banner">
+
+        <div class="phase-header">
+            <div class="phase-badge" id="phase-badge">
+                <span id="phase-icon">👀</span>
+                <span id="phase-title">Phase 1: Memorize!</span>
+            </div>
+
+            <div id="phase-timer-display" class="phase-timer-display">
+                ⏱️ <span id="phase-timer-num">5s</span>
+            </div>
+        </div>
+
+        <p id="phase-subtitle" class="phase-subtitle">
+            Study what is on each shelf carefully before the door closes...
+        </p>
+
+        <div class="phase-progress-track">
+            <div id="phase-progress-bar" class="phase-progress-fill"></div>
+        </div>
+
+    </div>
+
+    <main class="fridge-scene">
+
+        <!-- ACTUAL FRIDGE -->
+
+        <div
+            id="fridge"
+            class="fridge closed">
+
+            <!-- CAT LAYING ON TOP OF FRIDGE -->
+
+            <div class="top-cat fridge-item" data-item-id="top-cat" title="Cat on Fridge">
+
+                <!-- ULTRA CUTE KAWAII CAT SVG -->
+                <div class="cat-loaf" id="top-cat-body" title="Click me! Meow ~ 🐾">
+                    <svg viewBox="0 0 160 70" width="160" height="70" class="cat-loaf-svg" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <!-- Warm honey peach fur gradient -->
+                            <linearGradient id="catFurGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ffb26b" />
+                                <stop offset="100%" stop-color="#f5882b" />
+                            </linearGradient>
+                            <!-- Shiny golden bell gradient -->
+                            <linearGradient id="goldBellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#fff59d" />
+                                <stop offset="100%" stop-color="#f59e0b" />
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Soft floor shadow beneath cat loaf -->
+                        <ellipse cx="80" cy="63" rx="66" ry="5.5" fill="#35211633" filter="blur(1.5px)" />
+                        
+                        <!-- Fluffy Curled Tail -->
+                        <path class="cat-loaf-tail" d="M 132,48 C 150,48 158,38 153,26 C 148,18 138,22 142,32" stroke="#f5882b" stroke-width="8.5" stroke-linecap="round" fill="none" />
+                        <path d="M 148,22 C 146,19 140,22 143,28" stroke="#fffbeb" stroke-width="7" stroke-linecap="round" fill="none" />
+
+                        <!-- Chubby Round Loaf Body -->
+                        <path d="M 28,58 C 16,55 12,35 28,26 C 44,18 124,18 138,28 C 152,36 151,54 136,58 C 120,62 38,62 28,58 Z" fill="url(#catFurGrad)" />
+                        
+                        <!-- Sweet Tabby Stripes -->
+                        <path d="M 66,22 Q 70,34 64,44" stroke="#c25e19" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8" />
+                        <path d="M 86,20 Q 90,33 84,45" stroke="#c25e19" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8" />
+                        <path d="M 106,22 Q 110,34 104,44" stroke="#c25e19" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8" />
+                        <path d="M 124,26 Q 127,36 121,44" stroke="#c25e19" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8" />
+
+                        <!-- Cream Tummy & Chest Fluff -->
+                        <path d="M 24,44 C 20,54 36,60 55,59 C 48,52 38,44 24,44 Z" fill="#fffbeb" />
+
+                        <!-- Tucked Front Paws with cute Pink Toe Beans -->
+                        <!-- Left Paw -->
+                        <ellipse cx="32" cy="56" rx="9" ry="5.5" fill="#fffbeb" stroke="#f5882b" stroke-width="1.2" />
+                        <circle cx="32" cy="56.5" r="2.2" fill="#ff70a6" />
+                        <circle cx="28" cy="54" r="1.2" fill="#ff70a6" />
+                        <circle cx="36" cy="54" r="1.2" fill="#ff70a6" />
+                        
+                        <!-- Right Paw -->
+                        <ellipse cx="48" cy="56" rx="8.5" ry="5.5" fill="#fffbeb" stroke="#f5882b" stroke-width="1.2" />
+                        <circle cx="48" cy="56.5" r="2.2" fill="#ff70a6" />
+                        <circle cx="44" cy="54" r="1.2" fill="#ff70a6" />
+                        <circle cx="52" cy="54" r="1.2" fill="#ff70a6" />
+
+                        <!-- Ribbon Collar with tiny Gold Bell -->
+                        <path d="M 17,40 Q 30,48 45,39" stroke="#ef4444" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                        <circle cx="30" cy="45" r="3.5" fill="url(#goldBellGrad)" stroke="#b45309" stroke-width="0.8" />
+                        <circle cx="30" cy="46" r="0.8" fill="#78350f" />
+
+                        <!-- Chubby Round Kawaii Head -->
+                        <circle cx="28" cy="34" r="17" fill="url(#catFurGrad)" />
+                        <!-- Cream Muzzle -->
+                        <ellipse cx="21" cy="38" rx="8" ry="6.5" fill="#fffbeb" />
+                        <ellipse cx="33" cy="38" rx="8" ry="6.5" fill="#fffbeb" />
+
+                        <!-- Cute Rounded Ears -->
+                        <polygon points="15,26 9,10 23,20" fill="#f5882b" />
+                        <polygon points="16,24 12,14 21,20" fill="#fbcfe8" />
+                        
+                        <polygon points="32,20 42,10 43,26" fill="#f5882b" />
+                        <polygon points="34,21 40,14 41,24" fill="#fbcfe8" />
+
+                        <!-- Rosy Pink Blush Cheeks (Kawaii!) -->
+                        <ellipse cx="16" cy="37" rx="5.5" ry="3.5" fill="#ff70a6" opacity="0.65" />
+                        <ellipse cx="38" cy="37" rx="5.5" ry="3.5" fill="#ff70a6" opacity="0.65" />
+
+                        <!-- Joyful Smiling Closed Eyes ( ᵔ ᵕ ᵔ ) -->
+                        <path d="M 18,32 Q 22,27 26,32" stroke="#451a03" stroke-width="2.2" stroke-linecap="round" fill="none" />
+                        <path d="M 28,32 Q 32,27 36,32" stroke="#451a03" stroke-width="2.2" stroke-linecap="round" fill="none" />
+
+                        <!-- Tiny Pink Nose & Cat Mouth (ω) -->
+                        <polygon points="25,36 29,36 27,38.5" fill="#f43f5e" />
+                        <path d="M 27,38.5 Q 24,41.5 21,39.5 M 27,38.5 Q 30,41.5 33,39.5" stroke="#451a03" stroke-width="1.3" stroke-linecap="round" fill="none" />
+
+                        <!-- Whiskers -->
+                        <line x1="13" y1="36" x2="1" y2="34" stroke="#451a03" stroke-width="1.2" opacity="0.6" stroke-linecap="round" />
+                        <line x1="13" y1="39" x2="2" y2="41" stroke="#451a03" stroke-width="1.2" opacity="0.6" stroke-linecap="round" />
+                        <line x1="40" y1="36" x2="52" y2="34" stroke="#451a03" stroke-width="1.2" opacity="0.6" stroke-linecap="round" />
+                        <line x1="40" y1="39" x2="51" y2="41" stroke="#451a03" stroke-width="1.2" opacity="0.6" stroke-linecap="round" />
+
+                        <!-- Floating Tiny Pink Heart -->
+                        <g class="cat-heart-pop">
+                            <path d="M 52,18 C 50,14 44,15 44,20 C 44,25 52,29 52,29 C 52,29 60,25 60,20 C 60,15 54,14 52,18 Z" fill="#ec4899" opacity="0.9" transform="scale(0.55) translate(45, -8)" />
+                        </g>
+                    </svg>
+                </div>
+
+            </div>
+
+            <!-- Refrigerator cabinet -->
+
+            <div class="fridge-cabinet">
+
+                <!-- Cold interior -->
+
+                <div class="fridge-interior">
+
+                    <div class="interior-light"></div>
+
+                    <!-- TOP SHELF -->
+
+                    <div class="fridge-shelf shelf-one">
+
+                        <div class="milk fridge-item" data-item-id="milk" title="Milk carton">
+                            <span>🥛</span>
+                            <strong>MILK</strong>
+                            <small>Still here...</small>
+                        </div>
+
+                        <div class="eggs fridge-item" data-item-id="eggs" title="Eggs">
+                            🥚🥚🥚
+                        </div>
+
+                        <div class="tomato fridge-item" data-item-id="tomato" title="Fresh Tomato">
+                            🍅
+                        </div>
+
+                    </div>
+
+
+                    <!-- SECOND SHELF -->
+
+                    <div class="fridge-shelf shelf-two">
+
+                        <div class="leftovers fridge-item" data-item-id="leftovers" title="Yesterday's Leftovers">
+                            🍱
+                            <span>Leftovers<br>(again)</span>
+                        </div>
+
+                        <div class="water fridge-item" data-item-id="water" title="Cold Water">
+                            💧
+                            <span>Hydration<br>pro max</span>
+                        </div>
+
+                        <div class="chilli fridge-item" data-item-id="chilli" title="Spicy Chillies">
+                            🌶️
+                            <span>Chilli<br>Power</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- THIRD SHELF -->
+
+                    <div class="fridge-shelf shelf-three">
+
+                        <div class="lemon fridge-item" data-item-id="lemon" data-id="lemon" title="Lonely Lemon">
+                            🍋
+                        </div>
+
+                        <div class="pickle fridge-item" data-item-id="pickle" title="Mango Pickle">
+                            🫙
+                            <small>Mango<br>Pickle</small>
+                        </div>
+
+                        <div class="achar fridge-item" data-item-id="achar" title="Achar Forever">
+                            🫙
+                            <small>Achar<br>Forever</small>
+                        </div>
+
+                    </div>
+
+
+                    <!-- VEGETABLE DRAWER -->
+
+                    <div class="vegetable-drawer fridge-item" data-item-id="veggies" title="Vegetable Drawer">
+
+                        <div class="vegetable-glass" id="veggie-contents">
+
+                            🥬 🥕 🫑 🍅 🥦
+
+                        </div>
+
+                        <div class="vegetable-label">
+                            Veggies...<br>
+                            just vibing 🥬
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     FRIDGE DOOR
+                     RIGHT SIDE HINGE
+                ================================================== -->
+
+                <div class="fridge-door">
+
+                    <!-- Door thickness / inner edge -->
+
+                    <div class="door-edge"></div>
+
+                    <div class="door-inner">
+
+                        <!-- Door shelves -->
+
+                        <div class="door-shelf door-shelf-one fridge-item" data-item-id="door-shelf-1" title="Top Door Shelf">
+
+                            <span id="door-s1-c1">🥫</span>
+                            <span id="door-s1-c2">🧂</span>
+                            <span id="door-s1-c3">🫙</span>
+
+                        </div>
+
+                        <div class="door-shelf door-shelf-two fridge-item" data-item-id="door-shelf-2" title="Bottom Door Shelf">
+
+                            <span id="door-s2-c1">🍾</span>
+                            <span id="door-s2-c2">🥫</span>
+                            <span id="door-s2-c3">🧴</span>
+
+                        </div>
+
+
+                        <!-- Sticky note -->
+
+                        <div class="sticky-note yellow-note fridge-item" data-item-id="inner-yellow-note" title="Cat Note">
+
+                            <strong>
+                                Entha<br>
+                                moppeny<br>
+                                veendum?
+                            </strong>
+
+                            <span>
+                                🐱
+                            </span>
+
+                        </div>
+
+
+                        <div class="sticky-note pink-note fridge-item" data-item-id="inner-pink-note" title="Pink Note">
+
+                            Iniyum<br>
+                            thurakkano?
+
+                            😭
+
+                        </div>
+
+
+                        <div class="sticky-note white-note fridge-item" data-item-id="inner-white-note" title="To Do List">
+
+                            <strong>To Do:</strong>
+
+                            <br>
+
+                            ☐ Eat<br>
+                            ☐ Sleep<br>
+                            ☐ Check Fridge<br>
+                            ☐ Repeat...
+
+                        </div>
+
+                        <div class="tiny-fridge-doodle">
+                            🐱
+                        </div>
+
+                    </div>
+
+
+                    <!-- OUTER DOOR FACE -->
+
+                    <div class="door-surface">
+
+                        <div class="indicator-light"></div>
+
+                        <div class="fridge-logo">
+                            onn_nokkatte
+                        </div>
+
+
+                        <!-- Handle -->
+                        <div class="door-handle">
+
+                            <div class="handle-grip"></div>
+
+                        </div>
+
+
+                        <!-- Magnets -->
+
+                        <div class="magnet black-cat fridge-item" data-item-id="magnet-cat" title="Cat Magnet">
+                            🐱
+                        </div>
+
+                        <div class="magnet fish fridge-item" data-item-id="magnet-fish" title="Fish Magnet">
+                            🐟
+                        </div>
+
+                        <div class="magnet heart fridge-item" data-item-id="magnet-heart" title="Heart Magnet">
+                            ❤️
+                        </div>
+
+                        <div class="magnet palm fridge-item" data-item-id="magnet-palm" title="Palm Magnet">
+                            🌴
+                        </div>
+
+
+                        <!-- Outer notes -->
+
+                        <div class="sticky-note outer-yellow fridge-item" data-item-id="outer-yellow" title="Outer Note">
+
+                            Entha<br>
+                            moppeny<br>
+                            veendum?
+
+                            <br>
+                            🐱
+
+                        </div>
+
+
+                        <div class="sticky-note outer-pink fridge-item" data-item-id="outer-pink" title="Pink Note">
+
+                            Iniyum<br>
+                            thurakkano?
+
+                            😭
+
+                        </div>
+
+
+                        <div class="sticky-note outer-blue fridge-item" data-item-id="outer-blue" title="Blue Note">
+
+                            Nalla food<br>
+                            undo?
+
+                            👀
+
+                    </div>
+
+                </div>
+
+
+                <!-- Bottom feet -->
+
+                <div class="fridge-foot foot-left"></div>
+                <div class="fridge-foot foot-right"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CAT ON FLOOR -->
+        <div class="floor-cat fridge-item" data-item-id="floor-cat" title="Kitchen Cat (Click me!)">
+            <div class="cat-shadow"></div>
+            <div class="cat-character" id="floor-cat-char">
+                🐈
+            </div>
+        </div>
+
+        <!-- CAT FOOD BOWL -->
+        <div class="cat-bowl" id="cat-bowl" title="Click to feed kitty treats! 🐟">
+            <div class="bowl-treats" id="bowl-treats"></div>
+            <span>GOOD</span>
+            <strong>KITTY</strong>
+        </div>
+
+        <div class="cat-ball" id="cat-ball" title="Click to swat the yarn ball! 🧶">
+            🧶
+        </div>
+
+        <!-- NOSTALGIC WALL GECKO (PALLI) -->
+        <div class="wall-gecko" id="wall-gecko" title="Nostalgic Kerala Gecko 🦎 (Tik-tik-tik)">
+            🦎
+        </div>
+
+    </main>
+
+
+    <!-- Floating FX Container for Particles & Popups -->
+    <div id="fx-layer" class="fx-layer"></div>
+
+
+    <!-- =====================================================
+         MESSAGE
+    ====================================================== -->
+
+    <div
+        id="message-container"
+        class="message-container">
+
+        <p id="dynamic-message">
+            “Maybe there’s something good.”
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         CONTROLS
+    ====================================================== -->
+
+    <div class="controls-area">
+
+        <div class="action-btn-wrapper">
+            <button
+                id="action-btn"
+                class="action-btn"
+                type="button">
+                OPEN FRIDGE
+            </button>
+        </div>
+
+        <div class="waiting-text" id="waiting-text">
+            Maybe this time...
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================================================
+     ROUND READY MODAL (Player starts round when ready)
+========================================================= -->
+
+<div id="round-ready-modal" class="modal hidden">
+
+    <div class="modal-content round-dialog-box">
+
+        <div class="round-badge-pill" id="round-ready-badge">
+            ROUND 1
+        </div>
+
+        <h2 id="round-ready-title">
+            MEMORIZE THE FRIDGE
+        </h2>
+
+        <p class="round-dialog-desc">
+            The fridge will open for <strong>7 seconds</strong>.<br>
+            Take your time to study what is on each shelf before the door shuts!
+        </p>
+
+        <div class="round-step-preview">
+            <div class="mini-step active">
+                1. 👀 Memorize (7s)
+            </div>
+            <div class="mini-arrow">➔</div>
+            <div class="mini-step">
+                2. 🚪 Shuffled (3s)
+            </div>
+            <div class="mini-arrow">➔</div>
+            <div class="mini-step">
+                3. 🔍 Spot Difference (20s)
+            </div>
+        </div>
+
+        <button id="start-round-btn" class="primary-btn game-btn big-btn">
+            🟢 OPEN FRIDGE & MEMORIZE (7s)
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ROUND CLEARED MODAL (Celebration & Explicit Next Round)
+========================================================= -->
+
+<div id="round-cleared-modal" class="modal hidden">
+
+    <div class="modal-content round-dialog-box success-dialog">
+
+        <div class="round-cleared-icon">
+            🎉
+        </div>
+
+        <div class="round-badge-pill success-badge" id="cleared-badge">
+            ROUND 1 CLEARED!
+        </div>
+
+        <h2 id="cleared-title">
+            SPOT ON!
+        </h2>
+
+        <div class="difference-reveal-card">
+            <span class="reveal-label">WHAT CHANGED:</span>
+            <p id="cleared-desc" class="reveal-desc">
+                The Milk was replaced with Chocolate Milk! 🍫
+            </p>
+        </div>
+
+        <div class="cleared-stats-row">
+
+            <div class="cleared-stat">
+                <span>POINTS EARNED</span>
+                <strong id="cleared-points-val">+150</strong>
+            </div>
+
+            <div class="cleared-stat">
+                <span>TOTAL SCORE</span>
+                <strong id="cleared-total-val">150</strong>
+            </div>
+
+            <div class="cleared-stat">
+                <span>STREAK</span>
+                <strong id="cleared-streak-val">1x 🔥</strong>
+            </div>
+
+        </div>
+
+        <button id="next-round-btn" class="primary-btn game-btn big-btn">
+            NEXT ROUND ➔
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ROUND TIMEOUT MODAL (When time runs out but lives remain)
+========================================================= -->
+
+<div id="round-timeout-modal" class="modal hidden">
+
+    <div class="modal-content round-dialog-box timeout-dialog">
+
+        <div class="round-cleared-icon">
+            ⌛
+        </div>
+
+        <div class="round-badge-pill warning-badge">
+            TIME'S UP!
+        </div>
+
+        <h2>
+            TOO SLOW THIS TIME!
+        </h2>
+
+        <div class="difference-reveal-card">
+            <span class="reveal-label">HERE IS WHAT CHANGED:</span>
+            <p id="timeout-desc" class="reveal-desc">
+                The Lemon put on sunglasses! 🍋🕶️
+            </p>
+        </div>
+
+        <p class="timeout-lives-note">
+            Lives remaining: <span id="timeout-lives-val">❤️❤️🖤</span>
+        </p>
+
+        <button id="continue-round-btn" class="primary-btn game-btn big-btn">
+            CONTINUE TO NEXT ROUND ➔
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     GAME OVER MODAL
+========================================================= -->
+
+<div id="game-over-modal" class="modal hidden">
+
+    <div class="modal-content game-over-box">
+
+        <div class="game-over-icon" id="game-over-icon">
+            😵‍💫
+        </div>
+
+        <h2 id="game-over-title">
+            OUT OF LIVES!
+        </h2>
+
+        <p class="game-over-subtitle" id="game-over-desc">
+            The fridge outsmarted your memory this time!
+        </p>
+
+        <div class="game-over-stats">
+
+            <div class="game-stat-card">
+                <span>ROUNDS CLEARED</span>
+                <strong id="final-rounds-val">0</strong>
+            </div>
+
+            <div class="game-stat-card">
+                <span>TOTAL SCORE</span>
+                <strong id="final-score-val">0</strong>
+            </div>
+
+            <div class="game-stat-card">
+                <span>BEST STREAK</span>
+                <strong id="final-streak-val">0x 🔥</strong>
+            </div>
+
+            <div class="game-stat-card">
+                <span>MEMORY TITLE</span>
+                <strong id="final-rank-val">Goldfish Brain 🐟</strong>
+            </div>
+
+        </div>
+
+        <div class="game-over-actions">
+            <button id="play-again-btn" class="primary-btn game-btn">
+                🔄 PLAY AGAIN
+            </button>
+            <button id="switch-classic-btn" class="secondary-btn">
+                👀 Stare at Fridge Instead
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     ROUND SUCCESS TOAST
+========================================================= -->
+
+<div id="round-toast" class="round-toast hidden">
+
+    <div class="toast-icon" id="toast-icon">✨</div>
+
+    <div class="toast-body">
+        <strong id="toast-title">SPOT ON!</strong>
+        <p id="toast-msg">You caught the sneaky change!</p>
+    </div>
+
+    <div class="toast-points" id="toast-points">+150</div>
+
+</div>
+
+
+<!-- =========================================================
+     STATS MODAL
+========================================================= -->
+
+<div
+    id="stats-modal"
+    class="modal hidden">
+
+    <div class="modal-content">
+
+        <button
+            id="close-stats"
+            class="modal-close">
+            ×
+        </button>
+
+        <h2>FRIDGE ACTIVITY</h2>
+
+        <ul>
+
+            <li>
+                Times opened:
+                <span id="stat-opened">0</span>
+            </li>
+
+            <li>
+                Times closed:
+                <span id="stat-closed">0</span>
+            </li>
+
+            <li>
+                Food acquired:
+                <span id="stat-food">0</span>
+            </li>
+
+            <li>
+                New food discovered:
+                <span id="stat-new-food">0</span>
+            </li>
+
+            <li>
+                Time spent checking:
+                <span id="stat-time">00:00</span>
+            </li>
+
+            <li>
+                Most checked item:
+                <span>Milk</span>
+            </li>
+
+            <li>
+                Purpose accomplished:
+                <span>0%</span>
+            </li>
+
+        </ul>
+
+        <p class="modal-joke">
+            “Your commitment to accomplishing nothing is impressive.”
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     FINAL SCREEN
+========================================================= -->
+
+<section
+    id="final-screen"
+    class="screen hidden final-screen">
+
+    <div class="final-content">
+
+        <div class="final-small">
+            EXPERIMENT COMPLETE
+        </div>
+
+        <h2>
+            CONGRATULATIONS
+        </h2>
+
+        <p class="final-highlight">
+            You found absolutely nothing.
+        </p>
+
+        <div class="final-stats-box">
+
+            <p>
+                Fridge opened:
+                <span id="final-opens">0</span>
+            </p>
+
+            <p>
+                Fridge closed:
+                <span id="final-closes">0</span>
+            </p>
+
+            <p>
+                Food obtained:
+                <span>0</span>
+            </p>
+
+            <p>
+                New food discovered:
+                <span>0</span>
+            </p>
+
+            <p>
+                Time wasted:
+                <span id="final-time">00:00</span>
+            </p>
+
+        </div>
+
+        <p class="final-quote">
+            “You already knew there was nothing inside.”
+        </p>
+
+        <p class="final-subquote">
+            But you checked anyway.
+        </p>
+
+        <button
+            id="final-action-btn"
+            class="primary-btn">
+
+            CHECK ONE LAST TIME
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     KERALA ART EASEL STUDIO MODAL
+========================================================= -->
+
+<div id="painting-easel-modal" class="modal hidden easel-modal">
+    <div class="easel-modal-backdrop" id="easel-modal-backdrop"></div>
+    <div class="easel-modal-content">
+        <button id="close-easel-btn" class="modal-close" type="button" title="Close Easel">×</button>
+        <div class="easel-header">
+            <h2>🎨 KERALA ART EASEL STUDIO</h2>
+            <p>Paint, stamp, and hang your personal masterpiece in the kitchen!</p>
+        </div>
+
+        <div class="easel-workspace">
+            <div class="easel-stand-top"></div>
+            <div class="easel-canvas-wrapper">
+                <canvas id="easel-free-canvas" width="460" height="300"></canvas>
+                <div id="easel-canvas-overlay" class="easel-canvas-overlay"></div>
+            </div>
+            <div class="easel-stand-shelf"></div>
+        </div>
+
+        <div class="easel-controls">
+            <div class="easel-palette-row">
+                <span class="easel-ctrl-label">Colors:</span>
+                <div class="easel-color-list">
+                    <button class="easel-color-btn active" data-color="#f43f5e" style="--btn-c: #f43f5e" type="button" title="Rose"></button>
+                    <button class="easel-color-btn" data-color="#fbbf24" style="--btn-c: #fbbf24" type="button" title="Gold"></button>
+                    <button class="easel-color-btn" data-color="#10b981" style="--btn-c: #10b981" type="button" title="Green"></button>
+                    <button class="easel-color-btn" data-color="#0ea5e9" style="--btn-c: #0ea5e9" type="button" title="Blue"></button>
+                    <button class="easel-color-btn" data-color="#8b5cf6" style="--btn-c: #8b5cf6" type="button" title="Purple"></button>
+                    <button class="easel-color-btn" data-color="#854d0e" style="--btn-c: #854d0e" type="button" title="Wood"></button>
+                    <button class="easel-color-btn" data-color="#18181b" style="--btn-c: #18181b" type="button" title="Black"></button>
+                    <button class="easel-color-btn" data-color="#ffffff" style="--btn-c: #ffffff" type="button" title="White"></button>
+                </div>
+            </div>
+
+            <div class="easel-tools-row">
+                <div class="easel-tool-group">
+                    <span class="easel-ctrl-label">Brush:</span>
+                    <button class="easel-brush-size active" data-size="4" type="button">Small</button>
+                    <button class="easel-brush-size" data-size="9" type="button">Medium</button>
+                    <button class="easel-brush-size" data-size="18" type="button">Bold</button>
+                </div>
+
+                <div class="easel-tool-group">
+                    <span class="easel-ctrl-label">Stamps:</span>
+                    <div class="easel-stamp-list">
+                        <button class="easel-stamp-choice" data-stamp="🌴" type="button">🌴</button>
+                        <button class="easel-stamp-choice" data-stamp="⛵" type="button">⛵</button>
+                        <button class="easel-stamp-choice" data-stamp="🐘" type="button">🐘</button>
+                        <button class="easel-stamp-choice" data-stamp="☀️" type="button">☀️</button>
+                        <button class="easel-stamp-choice" data-stamp="🐱" type="button">🐱</button>
+                        <button class="easel-stamp-choice" data-stamp="🫖" type="button">🫖</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="easel-bottom-actions">
+                <button id="easel-clear-btn" class="secondary-btn" type="button">🧹 Clear Canvas</button>
+                <button id="easel-undo-btn" class="secondary-btn" type="button">↩️ Undo Stroke</button>
+                <button id="easel-save-to-wall-btn" class="primary-btn" type="button">🖼️ Hang on Kitchen Wall!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- =========================================================
+     ULTIMATE JOKE
+========================================================= -->
+
+<section
+    id="ultimate-joke-screen"
+    class="screen hidden ultimate-screen">
+
+    <div class="ultimate-content">
+
+        <div class="ultimate-cat">
+            🐈
+        </div>
+
+        <h2>
+            Would you like to check again?
+        </h2>
+
+        <div class="joke-buttons">
+
+            <button class="joke-btn trigger-loop">
+                YES
+            </button>
+
+            <button class="joke-btn trigger-loop">
+                YES
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

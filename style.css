@@ -1,0 +1,4830 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --cream: #fef8ec;
+    --parchment: #f7e8ce;
+    --wall: #c9a985;
+    --wood: #5a351f;
+    --wood-dark: #321c10;
+    --dark: #241b16;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --gold-glow: #fef08a;
+    --emerald: #10b981;
+    --rose: #f43f5e;
+    --blue: #0ea5e9;
+    --glass-bg: rgba(38, 24, 16, 0.72);
+    --glass-card: rgba(45, 28, 19, 0.82);
+    --glass-border: rgba(245, 222, 179, 0.22);
+    --glass-border-hover: rgba(245, 158, 11, 0.6);
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Nunito", sans-serif;
+    background: #1c130e;
+    color: var(--dark);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+button {
+    font-family: inherit;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   GENERAL SCREENS
+========================================================= */
+
+.screen {
+    min-height: 100vh;
+    width: 100%;
+}
+
+#landing-screen:not(.active),
+#main-screen:not(.active) {
+    display: none !important;
+}
+
+/* =========================================================
+   ELEVATED LANDING SCREEN PORTAL
+========================================================= */
+
+.landing-screen {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background:
+        radial-gradient(circle at 50% 15%, #4a3022 0%, #20140d 65%, #130a06 100%);
+}
+
+.landing-wall {
+    position: absolute;
+    inset: 0;
+    opacity: 0.25;
+    background:
+        repeating-linear-gradient(0deg, transparent 0 14px, #ffffff0a 15px 16px),
+        repeating-linear-gradient(90deg, transparent 0 18px, #0000000a 19px 20px);
+    pointer-events: none;
+}
+
+.ambient-glow {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 450px;
+    background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.18) 0%, rgba(244, 63, 94, 0.08) 45%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+}
+
+/* Ambient Particles */
+.landing-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #fde68a;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fbbf24;
+    opacity: 0.6;
+    animation: particleFloat 7s infinite ease-in-out alternate;
+}
+
+.p1 { top: 20%; left: 15%; animation-delay: 0s; }
+.p2 { top: 35%; right: 18%; animation-delay: 1.5s; width: 8px; height: 8px; }
+.p3 { bottom: 25%; left: 22%; animation-delay: 3s; width: 5px; height: 5px; }
+.p4 { bottom: 15%; right: 28%; animation-delay: 4.5s; }
+.p5 { top: 60%; left: 45%; animation-delay: 2s; width: 7px; height: 7px; }
+
+@keyframes particleFloat {
+    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.3; }
+    50% { transform: translateY(-30px) translateX(15px) scale(1.3); opacity: 0.8; }
+    100% { transform: translateY(-60px) translateX(-10px) scale(1); opacity: 0.3; }
+}
+
+.landing-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 980px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Header & Title */
+.folder-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245, 230, 200, 0.12);
+    border: 1px solid rgba(245, 222, 179, 0.3);
+    color: #fef08a;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.8px;
+    backdrop-filter: blur(8px);
+}
+
+.tag-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    animation: livePulse 2s infinite ease-in-out;
+}
+
+@keyframes livePulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.4); opacity: 1; }
+}
+
+.landing-title {
+    color: #fff8eb;
+    font-family: "Baloo 2", sans-serif;
+    font-size: clamp(52px, 8vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -2px;
+    text-shadow:
+        0 4px 0 #3a1d0f,
+        0 8px 25px rgba(0, 0, 0, 0.7);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.title-edition {
+    font-size: 14px;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 8px;
+    vertical-align: middle;
+    text-shadow: none;
+    font-weight: 800;
+    box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+}
+
+.tagline {
+    color: #fcd34d;
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.sub-tagline {
+    color: #d1b89d;
+    font-size: 14px;
+    max-width: 580px;
+    line-height: 1.4;
+}
+
+/* Mascot Hero Card */
+.mascot-hero-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: rgba(46, 28, 18, 0.65);
+    border: 1px solid rgba(245, 222, 179, 0.2);
+    border-radius: 16px;
+    padding: 10px 22px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    margin-top: 5px;
+    animation: gentleBob 3s ease-in-out infinite alternate;
+}
+
+@keyframes gentleBob {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px); }
+}
+
+.mascot-cat-peek {
+    font-size: 32px;
+    animation: catWiggle 4s infinite ease-in-out;
+}
+
+@keyframes catWiggle {
+    0%, 90%, 100% { transform: rotate(0deg); }
+    93% { transform: rotate(10deg); }
+    96% { transform: rotate(-8deg); }
+}
+
+.mascot-tea-steam {
+    position: relative;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+}
+
+.steam {
+    position: absolute;
+    top: -12px;
+    font-size: 13px;
+    color: #fef08a;
+    opacity: 0.8;
+    animation: steamRise 2s infinite ease-out;
+}
+
+.s1 { left: 4px; animation-delay: 0s; }
+.s2 { left: 14px; animation-delay: 1s; }
+
+@keyframes steamRise {
+    0% { transform: translateY(0) scale(0.8); opacity: 0.8; }
+    100% { transform: translateY(-16px) scale(1.4); opacity: 0; }
+}
+
+.mascot-text {
+    font-size: 13px;
+    color: #fef3c7;
+    font-family: "Baloo 2", sans-serif;
+    font-weight: 600;
+}
+
+.mascot-text strong {
+    color: #f59e0b;
+}
+
+/* Structured Game Mode Cards Grid */
+.mode-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.mode-card {
+    background: var(--glass-card);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 22px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: transparent;
+    transition: background 0.25s ease;
+}
+
+.mode-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--glass-border-hover);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+.card-featured {
+    border-color: rgba(245, 158, 11, 0.45);
+    background: linear-gradient(170deg, rgba(65, 38, 24, 0.9), rgba(35, 20, 13, 0.9));
+}
+
+.card-featured::before {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.card-art::before {
+    background: linear-gradient(90deg, #f43f5e, #ec4899);
+}
+
+.card-shelf::before {
+    background: linear-gradient(90deg, #f59e0b, #10b981);
+}
+
+.card-classic::before {
+    background: linear-gradient(90deg, #94a3b8, #64748b);
+}
+
+.mode-card-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mode-badge {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+}
+
+.badge-gold { background: #b45309; color: #fef08a; border: 1px solid #f59e0b; }
+.badge-rose { background: #9f1239; color: #fbcfe8; border: 1px solid #f43f5e; }
+.badge-amber { background: #78350f; color: #fef3c7; border: 1px solid #d97706; }
+.badge-slate { background: #334155; color: #e2e8f0; border: 1px solid #64748b; }
+
+.mode-time {
+    font-size: 11px;
+    color: #c7a78b;
+    font-weight: 700;
+}
+
+.mode-card-icon {
+    font-size: 38px;
+    line-height: 1;
+    margin: 4px 0;
+    transition: transform 0.25s ease;
+}
+
+.mode-card:hover .mode-card-icon {
+    transform: scale(1.15) rotate(4deg);
+}
+
+.mode-card h3 {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff9ed;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.mode-card p {
+    font-size: 12px;
+    color: #d6c2ac;
+    line-height: 1.35;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.card-action-btn {
+    width: 100%;
+    margin-top: 10px !important;
+    padding: 11px 16px !important;
+    font-size: 12px !important;
+    border-radius: 14px !important;
+    font-weight: 800 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Primary & Secondary Action Buttons */
+.primary-btn {
+    padding: 12px 24px;
+    border: 2px solid #fef08a;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+    transition: all 0.2s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    box-shadow: 0 12px 25px rgba(217, 119, 6, 0.55);
+}
+
+.secondary-btn {
+    padding: 11px 22px;
+    border-radius: 25px;
+    border: 1.5px solid rgba(245, 222, 179, 0.35);
+    background: rgba(58, 36, 23, 0.85);
+    color: #fef3c7;
+    font-size: 12.5px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.secondary-btn:hover {
+    background: rgba(85, 52, 33, 0.95);
+    border-color: #f59e0b;
+    transform: translateY(-2px);
+}
+
+/* How to box */
+.how-to-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: rgba(35, 20, 13, 0.7);
+    border: 1px solid rgba(245, 222, 179, 0.18);
+    border-radius: 30px;
+    padding: 8px 20px;
+    backdrop-filter: blur(10px);
+    margin-top: 14px;
+}
+
+.how-to-label {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    color: #fcd34d;
+    letter-spacing: 0.5px;
+}
+
+.step-pill {
+    background: rgba(65, 40, 26, 0.85);
+    border: 1px solid rgba(245, 222, 179, 0.25);
+    color: #fff9ee;
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.step-arrow {
+    color: #f59e0b;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.keyboard-tip {
+    font-size: 11px;
+    color: #fde68a;
+    font-weight: 700;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(245, 222, 179, 0.15);
+}
+
+
+/* =========================================================
+   MAIN KITCHEN
+========================================================= */
+
+.main-screen {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d4b28b,
+            #c8a27b 50%,
+            #b78e68
+        );
+}
+
+.kitchen-background {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #dec49d 0,
+            #d4b487 68%,
+            #aa734c 68%,
+            #8d5b3d 100%
+        );
+}
+
+
+/* =========================================================
+   WALL TEXTURE
+========================================================= */
+
+.kitchen-background::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    opacity: .08;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff 0 1px,
+            transparent 2px
+        );
+
+    background-size: 13px 13px;
+}
+
+/* Atmospheric Wainscoting Wall & Room Lighting */
+.kitchen-wainscot {
+    position: absolute;
+    bottom: 32%;
+    left: 0;
+    right: 0;
+    height: 155px;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #be7950 0px,
+            #be7950 26px,
+            #94522d 27px,
+            #94522d 28px
+        );
+    border-top: 6px solid #4a2413;
+    box-shadow: inset 0 8px 18px rgba(0, 0, 0, 0.22);
+    opacity: 0.82;
+    z-index: 2;
+}
+
+.kitchen-ambient-vignette {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 20%, rgba(255, 237, 180, 0.22) 0%, rgba(55, 30, 16, 0.35) 70%, rgba(20, 10, 5, 0.75) 100%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+
+/* =========================================================
+   WINDOW
+========================================================= */
+
+.window {
+    position: absolute;
+
+    left: -30px;
+    top: -20px;
+
+    width: 260px;
+    height: 390px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff2a5,
+            #ffcf65
+        );
+
+    border: 15px solid #72452d;
+
+    box-shadow:
+        15px 20px 45px #57351f66;
+
+    overflow: hidden;
+}
+
+.window-frame::before,
+.window-frame::after {
+    content: "";
+
+    position: absolute;
+
+    background: #70452d;
+
+    z-index: 5;
+}
+
+.window-frame::before {
+    width: 12px;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+}
+
+.window-frame::after {
+    height: 12px;
+    left: 0;
+    right: 0;
+    top: 48%;
+}
+
+.window-light {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffbd0aa,
+            transparent 50%
+        );
+}
+
+.outside-plants {
+    position: absolute;
+
+    bottom: 10px;
+    left: 25px;
+
+    font-size: 80px;
+}
+
+
+/* =========================================================
+   CURTAINS
+========================================================= */
+
+.curtain {
+    position: absolute;
+
+    top: 0;
+
+    width: 85px;
+    height: 390px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #f0d6bd,
+            #f0d6bd 12px,
+            #d69c79 14px,
+            #f5dec9 26px
+        );
+
+    opacity: .85;
+}
+
+.curtain-left {
+    left: 205px;
+}
+
+.curtain-right {
+    left: 260px;
+}
+
+
+/* =========================================================
+   WALL PICTURE
+========================================================= */
+
+.wall-picture {
+    position: absolute;
+    z-index: 60;
+    left: 4%;
+    top: 75px;
+    width: 220px;
+    background: #2b170e;
+    border: 8px solid #5c351e;
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow:
+        0 4px 0 #3a1e0e,
+        8px 16px 28px #1f0f0788,
+        inset 0 0 14px #150905aa;
+    transform: rotate(-0.5deg);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.wall-picture:hover {
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow:
+        0 6px 0 #3a1e0e,
+        10px 20px 32px #1f0f0799,
+        inset 0 0 14px #150905aa;
+}
+
+.wall-picture.painting-game-focus {
+    animation: paintingGameFocus 1.2s ease-in-out 2;
+}
+
+@keyframes paintingGameFocus {
+    0%, 100% {
+        transform: scale(1) rotate(-0.5deg);
+    }
+    50% {
+        transform: scale(1.07) rotate(0deg);
+        box-shadow:
+            0 0 32px #fbbf24,
+            0 0 18px #f43f5e,
+            12px 22px 35px #1f0f07aa;
+    }
+}
+
+/* Picture Overhead Brass Lamp */
+.picture-lamp {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 58px;
+    height: 10px;
+    background: linear-gradient(180deg, #fde68a, #d97706);
+    border: 1.5px solid #78350f;
+    border-radius: 6px 6px 2px 2px;
+    box-shadow: 0 4px 12px #fbbf2466;
+}
+
+.picture-lamp::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 6px;
+    background: #92400e;
+    border-radius: 2px;
+}
+
+.picture-lamp::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 35px;
+    background: radial-gradient(ellipse at top, #fef08a44 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Painting Game Container */
+.painting-game-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #fef3c7;
+    font-family: "Baloo 2", sans-serif;
+    user-select: none;
+}
+
+/* Header */
+.painting-game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    border-bottom: 1px solid #5c351e;
+    padding-bottom: 4px;
+}
+
+.painting-title-wrap {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.painting-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #fef08a;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+}
+
+.painting-scene-name {
+    font-size: 9px;
+    color: #fcd34d;
+    opacity: 0.9;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.painting-header-actions {
+    display: flex;
+    gap: 3px;
+}
+
+.painting-tool-btn {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    background: #451a03;
+    color: #fde68a;
+    border: 1px solid #78350f;
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 1.2;
+    transition: all 0.15s ease;
+}
+
+.painting-tool-btn:hover {
+    background: #78350f;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.painting-tool-btn.highlight {
+    background: #b45309;
+    border-color: #f59e0b;
+    color: #fff;
+}
+
+.painting-tool-btn.highlight:hover {
+    background: #d97706;
+}
+
+/* Canvas Frame & Artwork */
+.painting-canvas-frame {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    background: #fffbeb;
+    border: 2px solid #3f2213;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 6px #00000033;
+}
+
+.painting-canvas-art {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.painting-canvas-art svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* SVG Fillable Regions */
+.paint-region {
+    cursor: pointer;
+    transition: fill 0.35s ease, filter 0.15s ease, stroke-width 0.15s ease;
+    stroke: #451a03;
+    stroke-width: 1px;
+    stroke-linejoin: round;
+}
+
+.paint-region:hover {
+    filter: brightness(1.2);
+    stroke-width: 2px;
+    stroke: #18181b;
+}
+
+.paint-region.region-pulse {
+    animation: regionPop 0.4s ease-out;
+}
+
+@keyframes regionPop {
+    0% { transform: scale(1); filter: brightness(1.5); }
+    50% { transform: scale(1.03); filter: brightness(1.8); }
+    100% { transform: scale(1); filter: brightness(1); }
+}
+
+.region-label {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    fill: #451a03;
+    pointer-events: none;
+    text-anchor: middle;
+    dominant-baseline: central;
+    transition: opacity 0.25s ease;
+}
+
+.region-label-bg {
+    fill: #ffffffcc;
+    stroke: #451a03;
+    stroke-width: 0.8px;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+/* Stamp Layer */
+.painting-stamp-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.painting-placed-stamp {
+    position: absolute;
+    font-size: 20px;
+    line-height: 1;
+    transform: translate(-50%, -50%) scale(0);
+    animation: stampPopIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    user-select: none;
+}
+
+@keyframes stampPopIn {
+    0% { transform: translate(-50%, -50%) scale(0) rotate(-15deg); }
+    100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+}
+
+/* Complete Celebration Banner */
+.painting-complete-banner {
+    position: absolute;
+    inset: 0;
+    background: #18181bee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px;
+    text-align: center;
+    animation: bannerPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10;
+}
+
+@keyframes bannerPop {
+    0% { opacity: 0; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.complete-stars {
+    font-size: 18px;
+    animation: bounce 0.6s infinite alternate;
+}
+
+.painting-complete-banner span {
+    font-size: 12px;
+    font-weight: 800;
+    color: #fef08a;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px #fbbf24;
+}
+
+.painting-complete-banner small {
+    font-size: 10px;
+    color: #86efac;
+    font-weight: 700;
+}
+
+/* Tools Bar (Modes & Actions) */
+.painting-tools-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.painting-mode-tabs {
+    display: flex;
+    gap: 3px;
+}
+
+.paint-tab-btn {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border: 1px solid #78350f;
+    border-radius: 5px;
+    background: #381a0e;
+    color: #fcd34d;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.paint-tab-btn:hover {
+    background: #5c2d18;
+}
+
+.paint-tab-btn.active {
+    background: #d97706;
+    color: #fff;
+    border-color: #fbbf24;
+    box-shadow: 0 0 6px #f59e0b66;
+}
+
+.painting-subtools {
+    display: flex;
+    gap: 3px;
+}
+
+.paint-action-btn {
+    font-size: 10px;
+    padding: 2px 5px;
+    background: #381a0e;
+    border: 1px solid #5c351e;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.paint-action-btn:hover {
+    transform: scale(1.15);
+    background: #5c2d18;
+}
+
+/* Paint Palette */
+.painting-palette {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 4px;
+    background: #1c0d07;
+    border: 1px solid #5c351e;
+    border-radius: 8px;
+}
+
+.palette-pot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--pot-color, #fbbf24);
+    border: 2px solid #fef3c7;
+    cursor: pointer;
+    box-shadow:
+        0 2px 4px #00000088,
+        inset 0 2px 3px #ffffffaa;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease;
+    position: relative;
+}
+
+.palette-pot::after {
+    content: attr(data-color-id);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 1px 2px #000, 0 0 3px #000;
+}
+
+.palette-pot:hover {
+    transform: scale(1.15);
+}
+
+.palette-pot.active {
+    transform: scale(1.22);
+    border-color: #fff;
+    box-shadow:
+        0 0 10px #fbbf24,
+        0 3px 6px #000000aa,
+        inset 0 2px 4px #ffffffcc;
+}
+
+/* Stamp Bar */
+.painting-stamp-bar {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 4px;
+    background: #1c0d07;
+    border: 1px solid #5c351e;
+    border-radius: 8px;
+}
+
+.stamp-btn {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid #78350f;
+    border-radius: 6px;
+    background: #381a0e;
+    font-size: 13px;
+    line-height: 22px;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.stamp-btn:hover {
+    transform: scale(1.18);
+    background: #5c2d18;
+}
+
+.stamp-btn.active {
+    background: #d97706;
+    border-color: #fef08a;
+    transform: scale(1.15);
+    box-shadow: 0 0 6px #f59e0b88;
+}
+
+/* Status Row */
+.painting-status-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.painting-status-msg {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #fde68a;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.painting-progress-wrap {
+    width: 100%;
+    height: 5px;
+    background: #1c0d07;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #5c351e;
+}
+
+.painting-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #f59e0b, #10b981);
+    transition: width 0.3s ease;
+}
+
+
+/* =========================================================
+   WOODEN SHELF
+========================================================= */
+
+.wooden-shelf {
+    position: absolute;
+
+    z-index: 60;
+
+    right: 8%;
+
+    top: 0;
+
+    width: 205px;
+    height: 600px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #59341f,
+            #70452c,
+            #472a1c
+        );
+
+    border-left: 12px solid #402417;
+    border-right: 12px solid #402417;
+
+    opacity: .78;
+
+    box-shadow:
+        -10px 15px 30px #3b241733;
+}
+
+.shelf-board {
+    position: absolute;
+
+    top: 140px;
+    left: -2px;
+
+    width: calc(100% + 4px);
+    height: 15px;
+
+    background: #452619;
+
+    box-shadow:
+        0 175px #452619,
+        0 350px #452619;
+}
+
+.plant,
+.jar {
+    position: absolute;
+
+    font-size: 60px;
+}
+
+.plant-one {
+    top: 40px;
+    left: 60px;
+}
+
+.plant-two {
+    top: 210px;
+    right: 30px;
+}
+
+.jar-one {
+    top: 150px;
+    left: 45px;
+
+    font-size: 42px;
+}
+
+.jar-two {
+    top: 330px;
+    right: 55px;
+
+    font-size: 42px;
+}
+
+.pantry-game {
+    position: absolute;
+    inset: 82px 14px 18px;
+    overflow: hidden;
+    z-index: 20;
+    padding: 14px 12px;
+    border: 2px solid #3f281b;
+    border-radius: 12px;
+    background: #26150ff2;
+    color: #ffe9a8;
+    text-align: center;
+    box-shadow: inset 0 0 0 2px #b27a4233;
+}
+
+.pantry-game.shelf-game-focus {
+    animation: shelfGameFocus 1.2s ease-in-out 2;
+}
+
+.pantry-heading span,
+.pantry-heading small,
+.pantry-result {
+    display: block;
+    font-family: "Baloo 2";
+    font-weight: 800;
+}
+
+.pantry-heading span {
+    font-size: 15px;
+    letter-spacing: .7px;
+}
+
+.pantry-heading small {
+    margin-top: 3px;
+    color: #e9c989;
+    font-size: 10px;
+}
+
+.pantry-slots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+    max-width: 174px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 16px;
+}
+
+.pantry-slot {
+    width: 100%;
+    height: 78px;
+    padding: 8px 4px;
+    border: 2px dashed #c99555;
+    border-radius: 8px;
+    background: #6d432b99;
+    color: #f8dda1;
+    cursor: pointer;
+    font-family: "Baloo 2";
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.pantry-slot:hover,
+.pantry-slot.pantry-correct {
+    background: #5f8b5b;
+    border-style: solid;
+}
+
+.pantry-slot.pantry-wrong {
+    background: #9a5544;
+}
+
+.pantry-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+    max-width: 174px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 18px;
+}
+
+.pantry-item {
+    width: 100%;
+    height: 78px;
+    padding: 0;
+    border: 2px solid #d3a158;
+    border-radius: 9px;
+    background: #f4d58b;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.pantry-item:hover,
+.pantry-item.pantry-selected {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 0 12px #ffe27a;
+}
+
+.pantry-result {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 4px 10px;
+    color: #f6d98e;
+    font-size: 11px;
+}
+
+.pantry-next {
+    display: block;
+    margin: 5px auto 0;
+    padding: 7px 14px;
+    border: 2px solid #f0cf7d;
+    border-radius: 18px;
+    background: #e2b957;
+    color: #3c2417;
+    cursor: pointer;
+    font-family: "Baloo 2";
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.pantry-next:hover {
+    background: #f5d77e;
+    transform: translateY(-2px);
+}
+
+.pantry-result:hover {
+    color: #fff3c7;
+    text-decoration: underline;
+}
+
+.shelf-game {
+    position: absolute;
+    top: 430px;
+    left: 16px;
+    right: 16px;
+    height: 115px;
+    padding: 10px;
+    border: 2px solid #3f281b;
+    border-radius: 10px;
+    background: #26150ff2;
+    color: #ffe9a8;
+    text-align: center;
+    box-shadow: inset 0 0 0 2px #b27a4233;
+    z-index: 20;
+}
+
+.shelf-row-game {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    height: 62px;
+    padding: 7px 9px;
+    border: 2px solid #3f281b;
+    border-radius: 9px;
+    background: #26150ff2;
+    color: #ffe9a8;
+    text-align: center;
+    box-shadow: inset 0 0 0 2px #b27a4233;
+    z-index: 20;
+}
+
+.shelf-row-one {
+    top: 70px;
+}
+
+.shelf-row-two {
+    top: 245px;
+}
+
+.shelf-row-three {
+    top: 420px;
+    height: 58px;
+}
+
+.shelf-row-game.shelf-game-focus {
+    animation: shelfGameFocus 1.2s ease-in-out 2;
+}
+
+.jar-choices {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 3px;
+}
+
+.jar-choice {
+    width: 28px;
+    height: 25px;
+    padding: 0;
+    border: 1px solid #d3a158;
+    border-radius: 6px;
+    background: #f4d58b;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.jar-choice:hover,
+.chai-button:hover {
+    transform: scale(1.12);
+}
+
+.game-choice-done {
+    background: #a8d98d;
+    border-color: #4f8b45;
+}
+
+.chai-actions {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 3px;
+}
+
+.shelf-game-title,
+.shelf-game-score {
+    display: block;
+    font-family: "Baloo 2";
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .7px;
+}
+
+.shelf-game-score {
+    margin-top: 7px;
+    color: #f6d98e;
+}
+
+.firefly-target {
+    position: absolute;
+    top: 39px;
+    left: 50%;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #ffe57d;
+    color: #8b4b1d;
+    font-size: 18px;
+    line-height: 28px;
+    cursor: pointer;
+    box-shadow: 0 0 14px #ffe57d, 0 0 25px #ffb52e;
+    transform: translateX(-50%);
+    transition: left .2s ease, top .2s ease, transform .2s ease;
+}
+
+.firefly-target:hover {
+    transform: translateX(-50%) scale(1.15);
+}
+
+.tea-game {
+    top: 552px;
+    height: 44px;
+    padding: 5px 8px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.shelf-games-top-btn {
+    background: #f6d889;
+    border-color: #9a642c;
+}
+
+.painting-game-top-btn {
+    background: #fce7f3;
+    border-color: #db2777;
+    color: #9d174d;
+}
+
+.painting-game-top-btn:hover {
+    background: #ec4899;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.painting-nav-btn {
+    background: #fdf2f8;
+    border-color: #db2777;
+    color: #9d174d;
+}
+
+.painting-nav-btn:hover {
+    background: #ec4899;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+@keyframes shelfGameFocus {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); box-shadow: 0 0 24px #ffe27a; }
+}
+
+.tea-game .shelf-game-title {
+    font-size: 9px;
+    white-space: nowrap;
+}
+
+.chai-button {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    border: 1px solid #f3c96b;
+    border-radius: 50%;
+    background: #f4d58b;
+    color: #5a321d;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.chai-result {
+    min-width: 38px;
+    color: #ffe49a;
+    font-family: "Baloo 2";
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   FLOOR
+========================================================= */
+
+.floor {
+    position: absolute;
+
+    z-index: 1;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 31%;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #9a623d 0 42px,
+            #8b5738 43px 45px
+        );
+
+    border-top: 5px solid #694029;
+}
+
+.floor::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    opacity: .35;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0 35px,
+            #432719 36px 38px
+        );
+}
+
+
+/* =========================================================
+   SUNLIGHT
+========================================================= */
+
+.sunbeam {
+    position: absolute;
+
+    top: 0;
+
+    width: 240px;
+    height: 650px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff6c533,
+            transparent 70%
+        );
+
+    transform: skewX(-15deg);
+
+    pointer-events: none;
+}
+
+.beam-one {
+    left: 100px;
+}
+
+.beam-two {
+    left: 260px;
+
+    opacity: .6;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.top-bar {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 30px;
+
+    z-index: 200;
+}
+
+.brand {
+    font-family: "Baloo 2";
+
+    font-weight: 800;
+
+    color: #3b271c;
+
+    background: #f3dfbcaa;
+
+    padding: 5px 12px;
+
+    border-radius: 10px;
+}
+
+.session-info {
+    font-size: 13px;
+    font-weight: 800;
+
+    color: #4b3426;
+}
+
+.stats-btn {
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid #70472e;
+
+    border-radius: 50%;
+
+    background: #f3dfbdcc;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   THOUGHT BUBBLE (CLOUD SHAPE OF THE CAT)
+========================================================= */
+
+.thought-bubble.cloud-shape {
+    position: absolute;
+    bottom: calc(100% + 24px);
+    left: -30px;
+    z-index: 150;
+    min-width: 175px;
+    max-width: 230px;
+    padding: 12px 20px;
+    background: #ffffff;
+    color: #33251c;
+    border: 3px solid #5a4637;
+    border-radius: 40px;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.15;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(50, 32, 20, 0.22);
+    animation: cloudFloat 3.5s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+/* Cloud Puffs on top of the pill */
+.cloud-puffs-top {
+    position: absolute;
+    top: -14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.cloud-puff {
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid #5a4637;
+    border-bottom: none;
+}
+
+.puff-left {
+    width: 36px;
+    height: 36px;
+    margin-left: 8px;
+}
+
+.puff-mid {
+    width: 46px;
+    height: 46px;
+    margin-top: -10px;
+}
+
+.puff-right {
+    width: 38px;
+    height: 38px;
+    margin-right: 8px;
+}
+
+/* White cover to hide inner borders of puffs */
+.cloud-body {
+    position: relative;
+    z-index: 5;
+    background: #ffffff;
+}
+
+/* 3 Thought dots leading down directly to the cat's ear */
+.cloud-trail {
+    position: absolute;
+    bottom: -32px;
+    left: 45px;
+    pointer-events: none;
+}
+
+.bubble-dot {
+    position: absolute;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2.5px solid #5a4637;
+    box-shadow: 0 2px 6px rgba(50, 32, 20, 0.15);
+}
+
+.dot-one {
+    width: 14px;
+    height: 14px;
+    top: 2px;
+    left: 0;
+}
+
+.dot-two {
+    width: 9px;
+    height: 9px;
+    top: 14px;
+    left: -7px;
+}
+
+.dot-three {
+    width: 5.5px;
+    height: 5.5px;
+    top: 24px;
+    left: -13px;
+}
+
+@keyframes cloudFloat {
+    0% { transform: translateY(0) rotate(-1deg); }
+    100% { transform: translateY(-6px) rotate(1.5deg); }
+}
+
+
+/* =========================================================
+   FRIDGE SCENE
+========================================================= */
+
+.fridge-scene {
+    position: absolute;
+    inset: 188px 0 92px 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 20;
+}
+
+
+/* =========================================================
+   FRIDGE
+========================================================= */
+
+.fridge {
+    position: relative;
+    width: min(380px, 48vw);
+    height: min(500px, 58vh);
+    min-width: 300px;
+    min-height: 380px;
+    z-index: 50;
+    perspective: 1500px;
+}
+
+.fridge-cabinet {
+    position: absolute;
+
+    inset: 0;
+
+    border-radius:
+        27px 27px
+        17px 17px;
+
+    background:
+        linear-gradient(
+            105deg,
+            #93877b,
+            #eee2cf 22%,
+            #d9cdbd 48%,
+            #f5ebdc 65%,
+            #918579 100%
+        );
+
+    border: 4px solid #574b43;
+
+    box-shadow:
+        15px 20px 0 #49372d66,
+        0 35px 55px #4b2d1d88;
+
+    overflow: visible;
+}
+
+
+/* REAL METAL TEXTURE */
+
+.fridge-cabinet::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 5px;
+
+    border-radius: 22px;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #ffffff0b 0px,
+            #ffffff0b 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    opacity: .9;
+
+    z-index: 100;
+}
+
+
+/* subtle reflected light */
+
+.fridge-cabinet::after {
+    content: "";
+
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
+
+    width: 35%;
+
+    height: 80%;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff55,
+            transparent
+        );
+
+    filter: blur(20px);
+
+    pointer-events: none;
+
+    z-index: 101;
+}
+
+
+/* =========================================================
+   INTERIOR
+========================================================= */
+
+.fridge-interior {
+    position: absolute;
+
+    top: 14px;
+    left: 14px;
+    bottom: 14px;
+
+    width: 100%;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            #b8e7ff,
+            #e9f8ff 35%,
+            #92cce5
+        );
+
+    box-shadow:
+        inset 0 0 30px #247ea755;
+
+    z-index: 5;
+
+    opacity: 0;
+
+    transition: opacity .35s ease;
+}
+
+.fridge.open .fridge-interior {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   INTERIOR LIGHT
+========================================================= */
+
+.interior-light {
+    position: absolute;
+
+    top: 15px;
+    left: 13%;
+    right: 13%;
+
+    height: 9px;
+
+    border-radius: 20px;
+
+    background: white;
+
+    box-shadow:
+        0 0 25px white,
+        0 0 50px #bcecff;
+}
+
+
+/* =========================================================
+   SHELVES
+========================================================= */
+
+.fridge-shelf {
+    position: absolute;
+
+    left: 5%;
+    right: 5%;
+
+    height: 8px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            #edfaff,
+            #a6c3cd
+        );
+
+    box-shadow:
+        0 4px 5px #335a6b55;
+}
+
+.shelf-one {
+    top: 28%;
+}
+
+.shelf-two {
+    top: 49%;
+}
+
+.shelf-three {
+    top: 69%;
+}
+
+
+/* =========================================================
+   FOOD
+========================================================= */
+
+.milk {
+    position: absolute;
+
+    left: 7%;
+    bottom: 9px;
+
+    width: 52px;
+    height: 75px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background: #f9f9f4;
+
+    border: 2px solid #7896a4;
+
+    box-shadow: 2px 4px 5px #34515c55;
+}
+
+.milk span {
+    font-size: 22px;
+}
+
+.milk strong {
+    font-size: 11px;
+}
+
+.milk small {
+    font-size: 7px;
+    color: #42677a;
+}
+
+.eggs {
+    position: absolute;
+
+    left: 40%;
+    bottom: 12px;
+
+    font-size: 24px;
+
+    background: #cdbd9c;
+
+    padding: 6px;
+
+    border-radius: 7px;
+}
+
+.tomato {
+    position: absolute;
+
+    right: 8%;
+    bottom: 9px;
+
+    font-size: 44px;
+}
+
+
+.leftovers {
+    position: absolute;
+
+    left: 7%;
+    bottom: 10px;
+
+    width: 92px;
+    height: 45px;
+
+    border-radius: 7px;
+
+    background: #b8babb;
+
+    border: 2px solid #737d7f;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    font-size: 23px;
+}
+
+.leftovers span {
+    font-size: 7px;
+
+    color: white;
+
+    font-weight: 800;
+}
+
+.water {
+    position: absolute;
+
+    left: 40%;
+    bottom: 8px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    font-size: 38px;
+}
+
+.water span,
+.chilli span {
+    font-size: 7px;
+
+    font-weight: 800;
+
+    text-align: center;
+}
+
+.chilli {
+    position: absolute;
+
+    right: 8%;
+    bottom: 9px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    font-size: 35px;
+}
+
+
+.lemon {
+    position: absolute;
+
+    left: 8%;
+    bottom: 8px;
+
+    font-size: 38px;
+}
+
+.pickle {
+    position: absolute;
+
+    left: 42%;
+    bottom: 7px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    font-size: 32px;
+}
+
+.pickle small,
+.achar small {
+    font-size: 7px;
+
+    font-weight: 800;
+
+    text-align: center;
+}
+
+.achar {
+    position: absolute;
+
+    right: 8%;
+    bottom: 7px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    font-size: 32px;
+}
+
+
+/* =========================================================
+   VEGETABLE DRAWER
+========================================================= */
+
+.vegetable-drawer {
+    position: absolute;
+
+    left: 5%;
+    right: 5%;
+    bottom: 4%;
+
+    height: 20%;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            #bde4ed99,
+            #7faebcbb
+        );
+
+    border: 3px solid #7099a6;
+
+    overflow: hidden;
+}
+
+.vegetable-glass {
+    position: absolute;
+
+    inset: 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+
+    filter:
+        blur(.2px);
+}
+
+.vegetable-label {
+    position: absolute;
+
+    bottom: 10px;
+    left: 50%;
+
+    transform: translateX(-50%) rotate(-2deg);
+
+    padding: 7px 10px;
+
+    background: #eadba9dd;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   FRIDGE DOOR
+   RIGHT HINGE
+========================================================= */
+
+.fridge-door {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 79%;
+    height: 100%;
+
+    z-index: 30;
+
+    transform-origin: right center;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform .95s
+        cubic-bezier(.16,.72,.24,1);
+
+    border-radius:
+        0 24px
+        16px 0;
+}
+
+
+/*
+   CLOSED
+*/
+
+.fridge-door {
+    transform: rotateY(0deg);
+}
+
+
+/*
+   OPEN
+
+   Door swings outward from RIGHT hinge.
+*/
+
+.fridge.open .fridge-door {
+    transform: rotateY(112deg);
+}
+
+
+/* =========================================================
+   DOOR OUTER SURFACE
+========================================================= */
+
+.door-surface {
+    position: absolute;
+
+    inset: 0;
+
+    border-radius:
+        0 23px
+        15px 0;
+
+    background:
+        linear-gradient(
+            105deg,
+            #b0a49a,
+            #eee3d3 24%,
+            #d8ccbd 53%,
+            #f5eadc 70%,
+            #95897d
+        );
+
+    border: 3px solid #574c45;
+
+    box-shadow:
+        8px 12px 20px #38251c55;
+
+    backface-visibility: hidden;
+
+    overflow: hidden;
+}
+
+
+/* metallic grain */
+
+.door-surface::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 4px;
+
+    border-radius: 0 20px 13px 0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #ffffff0c 0px,
+            #ffffff0c 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   DOOR INNER
+========================================================= */
+
+.door-inner {
+    position: absolute;
+
+    inset: 0;
+
+    border-radius:
+        0 23px
+        15px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d3edf6,
+            #f0fbff
+        );
+
+    border: 3px solid #6e8994;
+
+    transform: rotateY(180deg);
+
+    backface-visibility: hidden;
+
+    overflow: hidden;
+
+    padding: 25px;
+}
+
+
+/* =========================================================
+   DOOR EDGE
+========================================================= */
+
+.door-edge {
+    position: absolute;
+
+    right: -7px;
+
+    top: 8px;
+    bottom: 8px;
+
+    width: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #554941,
+            #c9beb3,
+            #554941
+        );
+
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   DOOR SHELVES
+========================================================= */
+
+.door-shelf {
+    position: absolute;
+
+    left: 5%;
+    right: 5%;
+
+    height: 12%;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            #eefaff,
+            #a7c5cf
+        );
+
+    border: 2px solid #7898a4;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-around;
+
+    font-size: 22px;
+}
+
+.door-shelf-one {
+    top: 16%;
+}
+
+.door-shelf-two {
+    top: 30%;
+}
+
+
+/* =========================================================
+   HANDLE
+========================================================= */
+
+.door-handle {
+    position: absolute;
+
+    left: 24px;
+
+    top: 28%;
+
+    width: 15px;
+    height: 43%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #46413d,
+            #b6b1a9,
+            #625d57
+        );
+
+    box-shadow:
+        5px 6px 10px #33261e66;
+
+    z-index: 20;
+}
+
+.handle-grip {
+    position: absolute;
+
+    left: -5px;
+
+    top: 10px;
+
+    bottom: 10px;
+
+    width: 6px;
+
+    border-radius: 10px;
+
+    background: #e9e3d9;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.fridge-logo {
+    position: absolute;
+
+    top: 28px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 3px 10px;
+
+    border-radius: 4px;
+
+    background: #756b63;
+
+    color: #ded6ca;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   INDICATOR
+========================================================= */
+
+.indicator-light {
+    position: absolute;
+
+    top: 26px;
+    right: 18px;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #7dffab;
+
+    box-shadow:
+        0 0 10px #7dffab;
+}
+
+
+/* =========================================================
+   MAGNETS
+========================================================= */
+
+.magnet {
+    position: absolute;
+
+    z-index: 5;
+
+    font-size: 28px;
+
+    filter:
+        drop-shadow(2px 3px 2px #0004);
+}
+
+.black-cat {
+    top: 22%;
+    right: 48%;
+}
+
+.fish {
+    top: 37%;
+    right: 65%;
+}
+
+.heart {
+    top: 47%;
+    right: 46%;
+}
+
+.palm {
+    bottom: 14%;
+    left: 17%;
+}
+
+
+/* =========================================================
+   STICKY NOTES
+========================================================= */
+
+.sticky-note {
+    position: absolute;
+
+    z-index: 10;
+
+    padding: 12px 12px;
+
+    font-family: "Baloo 2";
+
+    font-weight: 700;
+
+    line-height: 1.05;
+
+    box-shadow:
+        4px 7px 10px #46302355;
+
+    transform-origin: center;
+}
+
+.outer-yellow {
+    right: 10%;
+    top: 17%;
+
+    width: 95px;
+
+    background: #e7bd52;
+
+    font-size: 14px;
+
+    transform: rotate(5deg);
+}
+
+.outer-pink {
+    right: 8%;
+    top: 39%;
+
+    width: 90px;
+
+    background: #e78686;
+
+    font-size: 14px;
+
+    transform: rotate(-5deg);
+}
+
+.outer-blue {
+    left: 30%;
+    bottom: 21%;
+
+    width: 100px;
+
+    background: #dce4d4;
+
+    font-size: 13px;
+
+    transform: rotate(-7deg);
+}
+
+.yellow-note {
+    top: 45%;
+    right: 5%;
+
+    width: 85px;
+
+    background: #e7bd52;
+
+    font-size: 12px;
+
+    transform: rotate(4deg);
+}
+
+.pink-note {
+    top: 62%;
+    right: 5%;
+
+    width: 85px;
+
+    background: #ed8c8c;
+
+    font-size: 12px;
+
+    transform: rotate(-4deg);
+}
+
+.white-note {
+    bottom: 12%;
+    right: 8%;
+
+    width: 100px;
+
+    background: #efe4c8;
+
+    font-size: 10px;
+
+    transform: rotate(3deg);
+}
+
+.tea-note {
+    position: absolute;
+
+    bottom: 7%;
+    left: 40%;
+
+    font-family: "Baloo 2";
+
+    font-size: 13px;
+
+    line-height: 1.05;
+
+    transform: rotate(-7deg);
+}
+
+.tiny-fridge-doodle {
+    position: absolute;
+
+    right: 13%;
+    bottom: 4%;
+
+    font-size: 23px;
+}
+
+
+/* =========================================================
+   TOP CAT (LAYING DOWN ABOVE THE FRIDGE)
+========================================================= */
+
+.top-cat {
+    position: absolute;
+    z-index: 100;
+    left: 25px;
+    bottom: calc(100% - 6px);
+    width: 160px;
+    height: 65px;
+    pointer-events: auto;
+}
+
+.cat-loaf {
+    position: relative;
+    width: 160px;
+    height: 65px;
+}
+
+.cat-loaf-svg {
+    display: block;
+    width: 160px;
+    height: 65px;
+    filter: drop-shadow(0 4px 6px rgba(53, 33, 22, 0.45));
+    animation: catLoafBreathe 3.5s ease-in-out infinite alternate;
+    transform-origin: bottom center;
+}
+
+@keyframes catLoafBreathe {
+    0% { transform: scale(1, 1); }
+    100% { transform: scale(1.02, 1.05); }
+}
+
+.cat-loaf-tail {
+    animation: catTailSway 3s ease-in-out infinite alternate;
+    transform-origin: 136px 46px;
+}
+
+@keyframes catTailSway {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-9deg); }
+}
+
+
+/* =========================================================
+   FLOOR CAT
+========================================================= */
+
+.floor-cat {
+    position: absolute;
+
+    z-index: 90;
+
+    bottom: 0;
+
+    left: calc(50% - 310px);
+
+    width: 125px;
+    height: 100px;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.cat-character {
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 82px;
+
+    line-height: .9;
+
+    filter:
+        drop-shadow(0 6px 4px #41271c66);
+}
+
+.cat-shadow {
+    position: absolute;
+
+    bottom: 3px;
+
+    left: 15px;
+
+    width: 100px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #35211655;
+
+    filter: blur(5px);
+}
+
+
+/* =========================================================
+   INTERACTIVE CAT BOWL & ROLLING YARN
+========================================================= */
+
+.cat-bowl {
+    position: absolute;
+    bottom: 4px;
+    left: calc(50% + 225px);
+    width: 90px;
+    height: 34px;
+    border-radius: 10px 10px 30px 30px;
+    background: linear-gradient(#fdfbf7, #d5c8b5);
+    border: 3px solid #544a40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 8.5px;
+    line-height: .85;
+    box-shadow: 3px 5px 12px rgba(59, 36, 27, 0.35);
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+    user-select: none;
+    z-index: 60;
+}
+
+.cat-bowl:hover {
+    transform: scale(1.12) rotate(-2deg);
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+}
+
+.cat-bowl:active {
+    transform: scale(0.95);
+}
+
+.cat-bowl strong {
+    font-size: 9px;
+}
+
+.bowl-treats {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    display: flex;
+    gap: 2px;
+    pointer-events: none;
+}
+
+.treat-particle {
+    animation: treatDrop 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+@keyframes treatDrop {
+    0% { transform: translateY(-20px) scale(0.3); opacity: 0; }
+    70% { transform: translateY(2px) scale(1.2); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.cat-ball {
+    position: absolute;
+    bottom: 2px;
+    left: calc(50% + 325px);
+    font-size: 28px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 60;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cat-ball:hover {
+    transform: scale(1.2) rotate(15deg);
+}
+
+.cat-ball.rolling {
+    animation: yarnBounceRoll 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes yarnBounceRoll {
+    0% { transform: translateX(0) rotate(0deg); }
+    40% { transform: translateX(-35px) translateY(-14px) rotate(-180deg); }
+    70% { transform: translateX(-55px) translateY(0) rotate(-320deg); }
+    85% { transform: translateX(-45px) translateY(-6px) rotate(-340deg); }
+    100% { transform: translateX(-30px) translateY(0) rotate(-360deg); }
+}
+
+
+/* =========================================================
+   NOSTALGIC WALL GECKO (PALLI)
+========================================================= */
+
+.wall-gecko {
+    position: absolute;
+    bottom: 24%;
+    right: calc(50% + 225px);
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 60;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.4));
+    transform: rotate(45deg);
+}
+
+.wall-gecko:hover {
+    transform: rotate(40deg) scale(1.25);
+}
+
+.wall-gecko.scurrying {
+    animation: geckoScurry 0.7s ease-in-out;
+}
+
+@keyframes geckoScurry {
+    0% { transform: rotate(45deg) translate(0, 0); }
+    30% { transform: rotate(60deg) translate(-10px, -15px); }
+    60% { transform: rotate(30deg) translate(-15px, -30px); }
+    100% { transform: rotate(45deg) translate(-5px, -40px); }
+}
+
+
+/* =========================================================
+   FRIDGE FEET
+========================================================= */
+
+.fridge-foot {
+    position: absolute;
+
+    bottom: -15px;
+
+    width: 50px;
+    height: 25px;
+
+    background:
+        linear-gradient(
+            #4b433d,
+            #211d1a
+        );
+
+    border-radius:
+        5px 5px
+        14px 14px;
+
+    z-index: -1;
+}
+
+.foot-left {
+    left: 25px;
+}
+
+.foot-right {
+    right: 25px;
+}
+
+
+/* =========================================================
+   COZY KERALA MESSAGE SPEECH BUBBLE
+========================================================= */
+
+.message-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 82px;
+    bottom: auto;
+    width: min(560px, 88vw);
+    min-height: 40px;
+    padding: 0 12px;
+    text-align: center;
+    z-index: 280;
+    pointer-events: none;
+}
+
+#dynamic-message {
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 24px;
+    background: rgba(255, 253, 245, 0.96);
+    backdrop-filter: blur(12px);
+    border: 2px solid #5a3825;
+    box-shadow: 0 8px 25px rgba(45, 25, 15, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    color: #3b2214;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.35;
+    pointer-events: auto;
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 100%;
+    position: relative;
+}
+
+#dynamic-message::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 7px;
+    background: #5a3825;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+
+/* =========================================================
+   CONTROLS DOCK & TACTILE ACTION BUTTON
+========================================================= */
+
+.controls-area {
+    position: absolute;
+    bottom: 22px;
+    left: 0;
+    right: 0;
+    z-index: 250;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    padding: 0 16px;
+}
+
+.action-btn-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.action-btn {
+    min-width: 210px;
+    padding: 13px 34px;
+    border-radius: 9999px;
+    border: 2.5px solid #fffbeb;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+    font-family: "Baloo 2", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow:
+        0 8px 24px rgba(217, 119, 6, 0.45),
+        0 4px 0 #853e08,
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.action-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+    box-shadow:
+        0 12px 28px rgba(217, 119, 6, 0.55),
+        0 5px 0 #853e08,
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.action-btn:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow:
+        0 4px 12px rgba(217, 119, 6, 0.35),
+        0 1px 0 #853e08;
+}
+
+.action-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: none;
+}
+
+.waiting-text {
+    margin-top: 7px;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    font-style: italic;
+    color: #7c482a;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.3px;
+    transition: color 0.2s ease;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 500;
+
+    background: #241810aa;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+
+    width: min(410px, 90vw);
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    background: #f4e7ce;
+
+    color: #39271c;
+
+    box-shadow:
+        0 25px 70px #1f120c99;
+}
+
+.modal-close {
+    position: absolute;
+
+    right: 15px;
+    top: 10px;
+
+    border: 0;
+
+    background: none;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    color: #5a4231;
+}
+
+.modal-content h2 {
+    font-family: "Baloo 2";
+
+    font-size: 25px;
+
+    margin-bottom: 15px;
+}
+
+.modal-content ul {
+    list-style: none;
+}
+
+.modal-content li {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid #8b6d5444;
+
+    font-size: 12px;
+}
+
+.modal-content li span {
+    font-weight: 800;
+}
+
+.modal-joke {
+    margin-top: 20px;
+
+    color: #765a42;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   FINAL SCREEN
+========================================================= */
+
+.final-screen {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #d8b982,
+            #4c3426
+        );
+}
+
+.final-content {
+    width: min(600px, 90vw);
+}
+
+.final-small {
+    color: #f8e5a5;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+}
+
+.final-content h2 {
+    margin-top: 12px;
+
+    color: white;
+
+    font-family: "Baloo 2";
+
+    font-size: clamp(45px, 7vw, 80px);
+
+    line-height: .9;
+}
+
+.final-highlight {
+    margin-top: 15px;
+
+    color: #fff0cc;
+
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.final-stats-box {
+    width: min(400px, 90vw);
+
+    margin: 30px auto;
+
+    padding: 20px;
+
+    background: #2b1c15aa;
+
+    border-radius: 15px;
+
+    color: #e7d6bc;
+
+    text-align: left;
+}
+
+.final-stats-box p {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid #ffffff14;
+
+    font-size: 12px;
+}
+
+.final-quote {
+    color: white;
+
+    font-size: 15px;
+}
+
+.final-subquote {
+    margin-top: 5px;
+
+    color: #d7c0a2;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   ULTIMATE
+========================================================= */
+
+.ultimate-screen {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #d6b17c,
+            #332219
+        );
+}
+
+.ultimate-content {
+    color: white;
+}
+
+.ultimate-cat {
+    font-size: 80px;
+}
+
+.ultimate-content h2 {
+    margin-top: 10px;
+
+    font-family: "Baloo 2";
+
+    font-size: clamp(30px, 5vw, 55px);
+}
+
+.joke-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.joke-btn {
+    min-width: 120px;
+
+    padding: 13px 25px;
+
+    border-radius: 30px;
+
+    border: 2px solid #f2dc9b;
+
+    background: #e3c56d;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .wooden-shelf {
+        right: 12px;
+        left: auto;
+        transform: none;
+        top: 80px;
+        width: 175px;
+        height: 520px;
+        opacity: 0.88;
+        z-index: 55;
+    }
+
+    .wall-picture {
+        left: 12px;
+        top: 80px;
+        width: 175px;
+        z-index: 55;
+    }
+
+    .window {
+        width: 190px;
+        height: 300px;
+    }
+
+    .curtain-left {
+        left: 150px;
+    }
+
+    .curtain-right {
+        left: 195px;
+    }
+
+    .thought-bubble {
+        left: auto;
+        right: -30px;
+        top: auto;
+        bottom: calc(100% + 18px);
+
+        transform:
+            scale(.85)
+            rotate(-4deg);
+    }
+
+    .fridge-scene {
+        top: 145px;
+    }
+
+    .fridge {
+        width: 300px;
+        height: 420px;
+    }
+
+    .top-cat {
+        left: calc(50% - 125px);
+    }
+
+    .cat-body {
+        font-size: 70px;
+    }
+
+    .floor-cat {
+        left: calc(50% - 205px);
+    }
+
+    .cat-bowl {
+        left: calc(50% + 140px);
+    }
+
+    .cat-ball {
+        display: none;
+    }
+
+    .message-container {
+        top: 116px;
+        bottom: auto;
+    }
+
+    .top-bar {
+        padding: 12px 15px;
+    }
+
+    .brand {
+        font-size: 12px;
+    }
+
+    .session-info {
+        font-size: 11px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .window {
+        opacity: .7;
+    }
+
+    .wall-picture {
+        left: 6px;
+        top: 85px;
+        width: 130px;
+        opacity: 0.8;
+        z-index: 55;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .wall-picture:hover,
+    .wall-picture.painting-game-focus {
+        opacity: 1;
+        z-index: 120;
+        transform: scale(1.1);
+    }
+
+    .wooden-shelf {
+        right: 6px;
+        left: auto;
+        transform: none;
+        top: 85px;
+        width: 130px;
+        opacity: 0.8;
+        z-index: 55;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .wooden-shelf:hover,
+    .wooden-shelf.shelf-game-focus {
+        opacity: 1;
+        z-index: 120;
+        transform: scale(1.1);
+    }
+
+    .fridge {
+        width: 270px;
+        height: 380px;
+    }
+
+    .top-cat {
+        left: calc(50% - 110px);
+    }
+
+    .cat-body {
+        font-size: 62px;
+    }
+
+    .floor-cat {
+        left: calc(50% - 185px);
+    }
+
+    .cat-character {
+        font-size: 65px;
+    }
+
+    .cat-bowl {
+        left: calc(50% + 110px);
+        width: 70px;
+    }
+
+    .wall-gecko {
+        display: none;
+    }
+
+    .thought-bubble {
+        right: -24px;
+
+        transform:
+            scale(.72)
+            rotate(-4deg);
+    }
+
+    .outer-yellow,
+    .outer-pink,
+    .outer-blue {
+        font-size: 10px;
+    }
+
+    .door-handle {
+        left: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   FIND THE DIFFERENCE GAME STYLES
+========================================================= */
+
+/* Landing Game Buttons & How-to */
+.landing-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.game-btn {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    border: 2px solid #fef3c7;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 10px 25px rgba(217, 119, 6, 0.45);
+}
+
+.game-btn:hover {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 30px rgba(217, 119, 6, 0.6);
+}
+
+.secondary-btn {
+    padding: 13px 24px;
+    border-radius: 30px;
+    border: 2px solid #b79b7d;
+    background: #443126aa;
+    color: #f5ead3;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.secondary-btn:hover {
+    background: #553e30;
+    transform: translateY(-2px);
+}
+
+.how-to-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+}
+
+.step-pill {
+    background: #39281fcc;
+    border: 1px solid #9c7b5f66;
+    color: #f5ead3;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.step-arrow {
+    color: #e6c96c;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+/* =========================================================
+   ELEVATED TOP BAR & GLASS HUD
+========================================================= */
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    padding: 0 24px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: rgba(35, 20, 13, 0.82);
+    backdrop-filter: blur(16px);
+    border-bottom: 1.5px solid rgba(245, 222, 179, 0.18);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+}
+
+.top-bar-left {
+    display: flex;
+    align-items: center;
+    min-width: 210px;
+}
+
+.top-bar-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+/* Brand Group & Badge */
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.live-status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 10px #10b981;
+    animation: livePulse 2s infinite ease-in-out;
+}
+
+.brand {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff9ee;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.brand-badge {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #ffffff;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.4);
+    border: 1px solid rgba(254, 240, 138, 0.3);
+}
+
+/* Game HUD */
+.game-hud {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(254, 249, 238, 0.95);
+    backdrop-filter: blur(12px);
+    border: 2px solid #5c351e;
+    border-radius: 30px;
+    padding: 5px 22px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255,255,255,0.8);
+    transition: all 0.25s ease;
+}
+
+.hud-divider {
+    width: 1.5px;
+    height: 22px;
+    background: #e2d3be;
+}
+
+.hud-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
+}
+
+.hud-label {
+    font-size: 8.5px;
+    color: #7c482a;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.hud-item strong {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 17px;
+    color: #2b170e;
+    font-weight: 800;
+}
+
+.hud-val-wrap {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.hud-coin-icon {
+    font-size: 14px;
+}
+
+.hud-lives {
+    font-size: 16px;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+}
+
+/* Classic Session Info */
+.session-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45, 27, 18, 0.9);
+    border: 1.5px solid rgba(245, 222, 179, 0.3);
+    border-radius: 20px;
+    padding: 6px 18px;
+    color: #fef08a;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.classic-counter-value {
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    background: #78350f;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* Top Actions */
+.top-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 210px;
+    justify-content: flex-end;
+}
+
+.hud-btn {
+    height: 38px;
+    padding: 0 13px;
+    border-radius: 18px;
+    border: 1.5px solid #784528;
+    background: #faecd5;
+    color: #382417;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.hud-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #fff8ee;
+    border-color: #f59e0b;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.hud-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.hint-btn {
+    background: #ffedd5;
+    border-color: #ea580c;
+    color: #9a3412;
+}
+
+.hint-btn:hover:not(:disabled) {
+    background: #ffedd5;
+}
+
+.sound-btn {
+    width: 38px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.mode-btn {
+    background: #e0f2fe;
+    border-color: #0284c7;
+    color: #0369a1;
+}
+
+.mode-btn.classic-active {
+    background: #fef3c7;
+    border-color: #d97706;
+    color: #92400e;
+}
+
+/* Phase Banner & Countdown Bar */
+.phase-banner {
+    position: fixed;
+    top: 74px;
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(500px, 92vw);
+    background: rgba(255, 253, 245, 0.95);
+    backdrop-filter: blur(14px);
+    border: 3px solid #5a4637;
+    border-radius: 20px;
+    padding: 8px 16px;
+    box-shadow: 0 12px 32px rgba(40, 20, 10, 0.3);
+    z-index: 450;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.phase-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.phase-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: #2b1c14;
+}
+
+.phase-icon {
+    font-size: 20px;
+    animation: bounceIcon 1s infinite alternate ease-in-out;
+}
+
+@keyframes bounceIcon {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-3px); }
+}
+
+.phase-timer-display {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: #b45309;
+    background: #fef3c7;
+    border: 1.5px solid #f59e0b;
+    padding: 2px 10px;
+    border-radius: 15px;
+}
+
+.phase-timer-display.urgent {
+    background: #fee2e2;
+    border-color: #ef4444;
+    color: #b91c1c;
+    animation: pulseUrgent 0.6s infinite alternate;
+}
+
+@keyframes pulseUrgent {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); box-shadow: 0 0 12px rgba(239, 68, 68, 0.6); }
+}
+
+.phase-subtitle {
+    font-size: 12px;
+    color: #634b39;
+    margin: 4px 0 8px 0;
+    font-weight: 600;
+}
+
+.phase-progress-track {
+    width: 100%;
+    height: 7px;
+    background: #e8d9c5;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #d4c0a8;
+}
+
+.phase-progress-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #f59e0b);
+    border-radius: 10px;
+    transition: width 0.1s linear;
+}
+
+.phase-banner.phase-memorize {
+    border-color: #059669;
+    box-shadow: 0 10px 30px rgba(5, 150, 105, 0.25);
+}
+.phase-banner.phase-memorize .phase-progress-fill {
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.phase-banner.phase-closing {
+    border-color: #d97706;
+    box-shadow: 0 10px 30px rgba(217, 119, 6, 0.25);
+}
+
+.phase-banner.phase-find {
+    border-color: #8b5cf6;
+    box-shadow: 0 10px 35px rgba(139, 92, 246, 0.3);
+    animation: findPulse 2s infinite alternate;
+}
+
+@keyframes findPulse {
+    0% { border-color: #8b5cf6; }
+    100% { border-color: #ec4899; box-shadow: 0 10px 35px rgba(236, 72, 153, 0.35); }
+}
+
+/* =========================================================
+   INTERACTIVE FRIDGE ITEMS & CLICK STATES
+========================================================= */
+
+.fridge-item {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s, box-shadow 0.2s;
+    user-select: none;
+}
+
+/* Enabled only during Phase 3 (Find Difference) */
+body.mode-find .fridge-item {
+    cursor: pointer !important;
+}
+
+body.mode-find .fridge-item:hover {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 10px #f59e0b) brightness(1.15);
+    z-index: 60;
+}
+
+/* When an item is clicked incorrectly */
+.item-wrong {
+    animation: wrongShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
+    filter: drop-shadow(0 0 12px #ef4444) !important;
+}
+
+@keyframes wrongShake {
+    10%, 90% { transform: translate3d(-4px, 0, 0) rotate(-3deg); }
+    20%, 80% { transform: translate3d(5px, 0, 0) rotate(3deg); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0) rotate(-2deg); }
+    40%, 60% { transform: translate3d(6px, 0, 0) rotate(2deg); }
+}
+
+/* When the correct difference is clicked */
+.item-correct {
+    animation: correctCelebration 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both !important;
+    filter: drop-shadow(0 0 18px #10b981) brightness(1.25) !important;
+    z-index: 80;
+}
+
+@keyframes correctCelebration {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.35) rotate(-8deg); }
+    70% { transform: scale(1.2) rotate(6deg); }
+    100% { transform: scale(1.15); }
+}
+
+/* Revealed item (hint or time-out reveal) */
+.item-revealed {
+    border-radius: 12px;
+    animation: hintGlow 1.2s infinite alternate ease-in-out !important;
+    z-index: 70;
+}
+
+@keyframes hintGlow {
+    0% {
+        box-shadow: 0 0 0 2px #f59e0b, 0 0 15px #f59e0b;
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: 0 0 0 8px rgba(245, 158, 11, 0), 0 0 30px #f59e0b;
+        transform: scale(1.18);
+    }
+}
+
+/* Floating FX Layer */
+.fx-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.score-flyup {
+    position: absolute;
+    font-family: "Baloo 2", sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    color: #10b981;
+    text-shadow: 0 3px 8px rgba(0,0,0,0.5), 0 0 12px rgba(16, 185, 129, 0.8);
+    transform: translate(-50%, -50%);
+    animation: scoreFly 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes scoreFly {
+    0% { opacity: 0; transform: translate(-50%, 0) scale(0.6); }
+    20% { opacity: 1; transform: translate(-50%, -20px) scale(1.25); }
+    100% { opacity: 0; transform: translate(-50%, -80px) scale(1); }
+}
+
+.wrong-indicator {
+    position: absolute;
+    font-family: "Baloo 2", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: #ef4444;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    transform: translate(-50%, -50%);
+    animation: wrongFly 0.8s ease-out forwards;
+}
+
+@keyframes wrongFly {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -100%) scale(0.9); }
+}
+
+.confetti-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 3px;
+    animation: confettiBurst 0.9s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes confettiBurst {
+    0% { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); }
+}
+
+/* =========================================================
+   ROUND SUCCESS TOAST
+========================================================= */
+
+.round-toast {
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #1e293be6;
+    backdrop-filter: blur(12px);
+    border: 2px solid #10b981;
+    border-radius: 40px;
+    padding: 10px 24px;
+    color: white;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.45), 0 0 25px rgba(16, 185, 129, 0.35);
+    animation: toastSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes toastSlide {
+    0% { opacity: 0; transform: translateX(-50%) translateY(-30px) scale(0.9); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.toast-icon {
+    font-size: 24px;
+}
+
+.toast-body strong {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 16px;
+    color: #34d399;
+    display: block;
+    line-height: 1.1;
+}
+
+.toast-body p {
+    font-size: 12px;
+    color: #cbd5e1;
+    margin: 0;
+}
+
+.toast-points {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #facc15;
+    background: #334155;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid #eab308;
+}
+
+/* =========================================================
+   GAME OVER MODAL
+========================================================= */
+
+.game-over-box {
+    text-align: center;
+    border: 4px solid #5a4637;
+    background: #fbf5e8;
+    max-width: 480px;
+    padding: 30px;
+}
+
+.game-over-icon {
+    font-size: 55px;
+    margin-bottom: 5px;
+    animation: shakeSlow 2s infinite ease-in-out;
+}
+
+@keyframes shakeSlow {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-8deg); }
+    75% { transform: rotate(8deg); }
+}
+
+.game-over-box h2 {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 32px;
+    color: #382417;
+    margin-bottom: 5px;
+}
+
+.game-over-subtitle {
+    font-size: 14px;
+    color: #6d523f;
+    margin-bottom: 20px;
+}
+
+.game-over-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.game-stat-card {
+    background: #ffffff99;
+    border: 2px solid #5a463744;
+    border-radius: 14px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.game-stat-card span {
+    font-size: 10px;
+    font-weight: 800;
+    color: #8c6a50;
+    letter-spacing: 0.5px;
+}
+
+.game-stat-card strong {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 20px;
+    color: #2b1c13;
+}
+
+.game-over-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Mobile Responsiveness for Game Elements */
+@media (max-width: 768px) {
+    .brand-badge {
+        display: none;
+    }
+
+    .game-hud {
+        gap: 10px;
+        padding: 4px 10px;
+    }
+
+    .hud-item strong {
+        font-size: 13px;
+    }
+
+    .hud-label {
+        font-size: 8px;
+    }
+
+    .hud-lives {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    .hud-btn {
+        height: 32px;
+        padding: 0 10px;
+        font-size: 11px;
+    }
+
+    .phase-banner {
+        top: 78px;
+        bottom: auto;
+        padding: 6px 12px;
+    }
+
+    .phase-badge {
+        font-size: 13px;
+    }
+
+    .phase-subtitle {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .message-container {
+        top: 148px;
+    }
+
+    .pantry-game {
+        inset: 72px 10px 12px;
+        padding: 12px 8px;
+    }
+
+    .pantry-slots,
+    .pantry-items {
+        max-width: 100%;
+    }
+
+    .top-bar {
+        padding: 8px 10px;
+        height: auto;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .game-hud {
+        order: 3;
+        width: 100%;
+        justify-content: space-around;
+        padding: 4px 8px;
+    }
+
+    .phase-banner {
+        top: 82px;
+        bottom: auto;
+        width: 95vw;
+        padding: 6px 10px;
+    }
+
+    .fridge-scene {
+        top: 154px;
+    }
+}
+
+/* Hide classic message container in game mode so it never overlaps phase banner */
+body.mode-game #message-container,
+body:not(.mode-classic) #message-container {
+    display: none;
+}
+
+body.mode-classic #message-container {
+    display: block;
+}
+
+
+/* =========================================================
+   STRUCTURED ROUND MODALS (Pacing & Player Control)
+========================================================= */
+
+.round-dialog-box {
+    text-align: center;
+    border: 4px solid #5a4637;
+    background: #fdf8ee;
+    max-width: 490px;
+    padding: 28px 24px;
+    border-radius: 24px;
+    box-shadow: 0 25px 70px rgba(35, 20, 10, 0.4);
+    animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalPop {
+    0% { transform: scale(0.88); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.round-badge-pill {
+    display: inline-block;
+    background: #fed7aa;
+    color: #9a3412;
+    border: 1.5px solid #f97316;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.round-badge-pill.success-badge {
+    background: #d1fae5;
+    color: #065f46;
+    border-color: #10b981;
+}
+
+.round-badge-pill.warning-badge {
+    background: #fee2e2;
+    color: #991b1b;
+    border-color: #ef4444;
+}
+
+.round-dialog-box h2 {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 28px;
+    color: #2c1a0e;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.round-dialog-desc {
+    font-size: 14px;
+    color: #5c4331;
+    line-height: 1.45;
+    margin-bottom: 20px;
+}
+
+.round-step-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.mini-step {
+    background: #f1e4cf;
+    border: 1.5px solid #d4be9f;
+    color: #543926;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.mini-step.active {
+    background: #10b981;
+    color: #ffffff;
+    border-color: #059669;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.mini-arrow {
+    color: #d97706;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.big-btn {
+    width: 100%;
+    max-width: 320px;
+    font-size: 16px;
+    padding: 15px 28px;
+    margin: 10px auto 0 auto;
+    display: inline-block;
+}
+
+.round-cleared-icon {
+    font-size: 48px;
+    margin-bottom: 6px;
+    animation: iconBounce 1s infinite alternate cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes iconBounce {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-8px) scale(1.1); }
+}
+
+.difference-reveal-card {
+    background: #ffffff;
+    border: 2px solid #5a463733;
+    border-radius: 14px;
+    padding: 14px;
+    margin: 14px 0 20px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.reveal-label {
+    font-size: 10px;
+    font-weight: 800;
+    color: #9a3412;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.reveal-desc {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.cleared-stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.cleared-stat {
+    background: #fbf5e8;
+    border: 1.5px solid #dcc8b0;
+    border-radius: 12px;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cleared-stat span {
+    font-size: 8.5px;
+    font-weight: 800;
+    color: #785237;
+    letter-spacing: 0.5px;
+}
+
+.cleared-stat strong {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 18px;
+    color: #2b1a0f;
+}
+
+.timeout-lives-note {
+    font-size: 14px;
+    font-weight: 700;
+    color: #5a3c26;
+    margin-bottom: 18px;
+}
+
+/* Cute Cat Animations & Interactivity */
+.top-cat {
+    cursor: pointer;
+}
+
+.top-cat:hover .cat-loaf-svg {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 12px rgba(245, 158, 11, 0.45));
+}
+
+.cat-heart-pop {
+    animation: heartFloat 2s ease-in-out infinite alternate;
+    transform-origin: 52px 18px;
+}
+
+@keyframes heartFloat {
+    0% { transform: translateY(0) scale(1); opacity: 0.75; }
+    100% { transform: translateY(-4px) scale(1.25); opacity: 1; }
+}
+
+
+/* =========================================================
+   KERALA ART EASEL STUDIO MODAL
+========================================================= */
+
+.easel-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.easel-modal.hidden {
+    display: none !important;
+}
+
+.easel-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(18, 10, 6, 0.78);
+    backdrop-filter: blur(5px);
+}
+
+.easel-modal-content {
+    position: relative;
+    z-index: 2;
+    width: 95%;
+    max-width: 560px;
+    background: linear-gradient(145deg, #fdf6ec, #faeedb);
+    border: 5px solid #6b3f21;
+    border-radius: 18px;
+    padding: 20px 24px;
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.6),
+        inset 0 0 15px rgba(107, 63, 33, 0.15);
+    text-align: center;
+    animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.easel-header h2 {
+    margin: 0;
+    font-family: "Baloo 2", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #451a03;
+    letter-spacing: 0.5px;
+}
+
+.easel-header p {
+    margin: 3px 0 12px;
+    font-size: 12px;
+    color: #78350f;
+    font-weight: 600;
+}
+
+.easel-workspace {
+    position: relative;
+    margin: 0 auto 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.easel-stand-top {
+    width: 14px;
+    height: 12px;
+    background: #854d0e;
+    border: 2px solid #451a03;
+    border-radius: 4px 4px 0 0;
+}
+
+.easel-canvas-wrapper {
+    position: relative;
+    background: #fffdf5;
+    border: 4px solid #5c351e;
+    border-radius: 8px;
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.2),
+        inset 0 0 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+#easel-free-canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    touch-action: none;
+}
+
+.easel-canvas-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.easel-stand-shelf {
+    width: calc(100% - 40px);
+    max-width: 470px;
+    height: 10px;
+    background: linear-gradient(180deg, #78350f, #451a03);
+    border: 2px solid #2b1104;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.easel-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.easel-palette-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.easel-ctrl-label {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    color: #451a03;
+}
+
+.easel-color-list {
+    display: flex;
+    gap: 6px;
+}
+
+.easel-color-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--btn-c, #f43f5e);
+    border: 2px solid #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+    transition: transform 0.15s ease;
+}
+
+.easel-color-btn:hover {
+    transform: scale(1.2);
+}
+
+.easel-color-btn.active {
+    transform: scale(1.3);
+    border-color: #451a03;
+    box-shadow: 0 0 10px #fbbf24, 0 2px 6px rgba(0,0,0,0.35);
+}
+
+.easel-tools-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 8px;
+    background: #fdf2e2;
+    border: 1.5px solid #dcc8b0;
+    border-radius: 10px;
+    padding: 6px 12px;
+}
+
+.easel-tool-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.easel-brush-size {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    background: #fbf5e8;
+    color: #451a03;
+    border: 1.5px solid #b45309;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.easel-brush-size:hover {
+    background: #fde68a;
+}
+
+.easel-brush-size.active {
+    background: #b45309;
+    color: #fff;
+    border-color: #78350f;
+}
+
+.easel-stamp-list {
+    display: flex;
+    gap: 4px;
+}
+
+.easel-stamp-choice {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #b45309;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 15px;
+    line-height: 26px;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.easel-stamp-choice:hover {
+    transform: scale(1.2);
+    background: #fef08a;
+}
+
+.easel-stamp-choice.active {
+    background: #f59e0b;
+    border-color: #78350f;
+    transform: scale(1.15);
+}
+
+.easel-bottom-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+/* Responsiveness for Painting Game & Easel */
+@media (max-width: 800px) {
+    .wall-picture {
+        left: 8px;
+        top: 105px;
+        width: 170px;
+        padding: 5px;
+        border-width: 6px;
+    }
+
+    .picture-lamp {
+        display: none;
+    }
+
+    .painting-canvas-frame {
+        height: 110px;
+    }
+
+    .palette-pot {
+        width: 22px;
+        height: 22px;
+    }
+
+    .easel-modal-content {
+        padding: 14px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wall-picture {
+        left: 6px;
+        top: 95px;
+        width: 145px;
+        padding: 4px;
+        border-width: 5px;
+    }
+
+    .painting-title {
+        font-size: 9.5px;
+    }
+
+    .painting-canvas-frame {
+        height: 95px;
+    }
+
+    .stamp-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 11px;
+        line-height: 18px;
+    }
+
+    .palette-pot {
+        width: 18px;
+        height: 18px;
+    }
+
+    .palette-pot::after {
+        font-size: 9px;
+    }
+}
+
